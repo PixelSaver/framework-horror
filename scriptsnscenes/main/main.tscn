@@ -1,3 +1,43 @@
-[gd_scene format=3 uid="uid://b1aosu42tvpdh"]
+[gd_scene load_steps=7 format=3 uid="uid://b1aosu42tvpdh"]
+
+[ext_resource type="Script" uid="uid://b87jggvw4whfb" path="res://scriptsnscenes/main/main.gd" id="1_j6fwf"]
+[ext_resource type="PackedScene" uid="uid://bo8tvfbkmmes6" path="res://assets/models/framework_16_laptop/framework_16.tscn" id="2_kxkkf"]
+[ext_resource type="Shader" uid="uid://t8wpynl8ecsf" path="res://shaders/crt.gdshader" id="3_uh2b8"]
+[ext_resource type="Texture2D" uid="uid://dl2vie00md2co" path="res://icon.svg" id="3_uu8of"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pme2s"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uu8of"]
+resource_local_to_scene = true
+shader = ExtResource("3_uh2b8")
+shader_parameter/tex = SubResource("ViewportTexture_pme2s")
+shader_parameter/mask_type = 1
+shader_parameter/curve = 0.0
+shader_parameter/sharpness = 0.6666667
+shader_parameter/color_offset = 0.0
+shader_parameter/mask_brightness = 1.0
+shader_parameter/scanline_brightness = 1.0
+shader_parameter/min_scanline_thickness = 0.5
+shader_parameter/aspect = 0.75
+shader_parameter/wobble_strength = 0.0
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_j6fwf")
+
+[node name="Framework16" parent="." instance=ExtResource("2_kxkkf")]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_uu8of")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_uu8of")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

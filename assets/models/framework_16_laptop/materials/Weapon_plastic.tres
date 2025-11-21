@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b5s44xkvup25b"]
+
+[ext_resource type="Texture2D" uid="uid://b80byd8p2i2xa" path="res://assets/models/framework_16_laptop/textures/Weapon_plastic_baseColor.png" id="1_uyins"]
+
+[resource]
+resource_name = "Weapon_plastic"
+cull_mode = 2
+albedo_texture = ExtResource("1_uyins")
+roughness = 0.80404085
