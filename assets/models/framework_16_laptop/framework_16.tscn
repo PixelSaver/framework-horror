@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://bo8tvfbkmmes6"]
+[gd_scene load_steps=10 format=4 uid="uid://bo8tvfbkmmes6"]
 
 [ext_resource type="Material" uid="uid://b5s44xkvup25b" path="res://assets/models/framework_16_laptop/materials/Weapon_plastic.tres" id="1_7jfrk"]
+[ext_resource type="Script" uid="uid://hgmw5svote6k" path="res://scriptsnscenes/framework/framework_16.gd" id="1_uc85b"]
 [ext_resource type="Material" uid="uid://dhjtkrgwvobes" path="res://assets/models/framework_16_laptop/materials/KEYBOARD.tres" id="2_uc85b"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_w0acr"]
@@ -101,7 +102,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_aqsp5")
 
-[node name="Framework16" type="Node3D"]
+[node name="Framework16" type="Node3D" node_paths=PackedStringArray("hinge")]
+script = ExtResource("1_uc85b")
+hinge = NodePath("Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge")
 
 [node name="Sketchfab_model" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -1, 2.220446e-16, 0, 0, 0)
@@ -123,7 +126,7 @@ mesh = SubResource("ArrayMesh_2waqh")
 skeleton = NodePath("")
 
 [node name="Hinge" type="Node3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi"]
-transform = Transform3D(2.0977002e-09, -0.16359508, -7.284191e-09, 0.16359502, 2.090447e-09, 0.00016284536, -0.00016284536, -7.286275e-09, 0.16359502, 0.00038273376, 0.7293509, 0.10672661)
+transform = Transform3D(2.0977e-09, -0.16359508, -7.284191e-09, -0.07825405, -7.400205e-09, 0.14366509, -0.14366509, 1.6421714e-09, -0.07825405, 0.00038273376, 0.7293509, 0.10672661)
 
 [node name="Screen" type="Node3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge"]
 transform = Transform3D(-2.6719255e-07, 6.1126533, 0, -6.1126533, -2.6719255e-07, 0, 0, 0, 6.1126533, -4.4582696, 0.002339714, -0.6523833)

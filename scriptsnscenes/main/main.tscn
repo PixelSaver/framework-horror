@@ -1,12 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1aosu42tvpdh"]
+[gd_scene load_steps=10 format=3 uid="uid://b1aosu42tvpdh"]
 
 [ext_resource type="Script" uid="uid://b87jggvw4whfb" path="res://scriptsnscenes/main/main.gd" id="1_j6fwf"]
 [ext_resource type="PackedScene" uid="uid://bo8tvfbkmmes6" path="res://assets/models/framework_16_laptop/framework_16.tscn" id="2_kxkkf"]
 [ext_resource type="Shader" uid="uid://t8wpynl8ecsf" path="res://shaders/crt.gdshader" id="3_uh2b8"]
-[ext_resource type="Texture2D" uid="uid://dl2vie00md2co" path="res://icon.svg" id="3_uu8of"]
+[ext_resource type="Script" uid="uid://hgmw5svote6k" path="res://scriptsnscenes/framework/framework_16.gd" id="3_uu8of"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kxkkf"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_uh2b8"]
+sky_material = SubResource("ProceduralSkyMaterial_kxkkf")
+
+[sub_resource type="Environment" id="Environment_uu8of"]
+background_mode = 1
+background_color = Color(0.10907499, 0.109075, 0.109075, 1)
+sky = SubResource("Sky_uh2b8")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_pme2s"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("CRTContainer/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uu8of"]
 resource_local_to_scene = true
@@ -25,19 +39,34 @@ shader_parameter/wobble_strength = 0.0
 [node name="Main" type="Node3D"]
 script = ExtResource("1_j6fwf")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uu8of")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
 [node name="Framework16" parent="." instance=ExtResource("2_kxkkf")]
+script = ExtResource("3_uu8of")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="Hinge" parent="Framework16/Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi" index="2"]
+transform = Transform3D(2.0977e-09, -0.16359508, -7.284191e-09, -0.081938535, -7.3553217e-09, 0.14159602, -0.14159602, 1.8327565e-09, -0.081938535, 0.00038273376, 0.7293509, 0.10672661)
 
-[node name="TextureRect" type="TextureRect" parent="SubViewport"]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("3_uu8of")
+[node name="CRTContainer" type="Node" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="SubViewport" type="SubViewport" parent="CRTContainer"]
+size = Vector2i(1728, 972)
+
+[node name="Camera3D" type="Camera3D" parent="CRTContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -4.7683716e-07, 4.287052, 3.3116207)
+fov = 30.0
+
+[node name="CRTRect" type="ColorRect" parent="CRTContainer"]
 material = SubResource("ShaderMaterial_uu8of")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[editable path="Framework16"]
