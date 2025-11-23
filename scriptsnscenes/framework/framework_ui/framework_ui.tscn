@@ -123,7 +123,7 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "
 Hold [color=red][tornado radius=7z.0 freq=3.]A[/tornado][/color] or [color=red][tornado radius=7z.0 freq=3.]D[/tornado][/color] 
-To check out the expansion cards
+Hover over the expansion cards
 
 [color=gray][wave]The arrow keys work too!"
 fit_content = true

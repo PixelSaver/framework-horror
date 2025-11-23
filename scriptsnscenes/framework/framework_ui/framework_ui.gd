@@ -28,7 +28,7 @@ func anim_start():
 	var t : = create_tween()
 	t.set_trans(Tween.TRANS_CUBIC).set_parallel(true)
 	logo.rotation = 0
-	t.tween_property(logo, "rotation", 2*PI, 1.)
+	t.tween_property(logo, "rotation", 2*PI, .6)
 	t.chain()
 	t.tween_callback(anim_2)
 
@@ -38,8 +38,8 @@ func anim_2():
 	t.set_parallel(true)
 	title.position.y = -BOOT_HEIGHT_OFFSET
 	title.show()
-	t.tween_property(logo, "position:y", BOOT_HEIGHT_OFFSET, 1)
-	t.tween_property(title, "position:y", 0, 1)
+	t.tween_property(logo, "position:y", BOOT_HEIGHT_OFFSET, .7)
+	t.tween_property(title, "position:y", 0, .7)
 	t.chain()
 	t.tween_callback(anim_3)
 
@@ -56,7 +56,7 @@ func anim_out():
 	var t : = create_tween()
 	t.set_trans(Tween.TRANS_BACK)
 	t.set_parallel(true)
-	t.tween_property(boot, "modulate:a", 0, 1.)
+	t.tween_property(boot, "modulate:a", 0, .4)
 	await t.finished
 	return
 
