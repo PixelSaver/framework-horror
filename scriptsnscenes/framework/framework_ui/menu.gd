@@ -26,6 +26,13 @@ func _input(_event: InputEvent) -> void:
 ## Tweening, 1 means right, 0 means back, and -1 means left
 func tween_cam(modifier:int):
 	if tweening == modifier: return # -1, 0, and 1 are only valid modifiers
+	match modifier:
+		-1:
+			Global.framework_13.anim_left()
+			Global.framework_13.anim_right(true)
+		1:
+			Global.framework_13.anim_right()
+			Global.framework_13.anim_left(true)
 	tweening = modifier
 	var target_pos = Vector3(CAM_RIGHT_POS.x*modifier, CAM_RIGHT_POS.y, CAM_RIGHT_POS.z)
 	var target_rot = Vector3(CAM_RIGHT_ROT.x, CAM_RIGHT_ROT.y*modifier, CAM_RIGHT_ROT.z)

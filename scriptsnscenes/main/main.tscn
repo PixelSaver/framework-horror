@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://b1aosu42tvpdh"]
+[gd_scene load_steps=16 format=3 uid="uid://b1aosu42tvpdh"]
 
 [ext_resource type="Script" uid="uid://b87jggvw4whfb" path="res://scriptsnscenes/main/main.gd" id="1_j6fwf"]
-[ext_resource type="PackedScene" uid="uid://bo8tvfbkmmes6" path="res://scriptsnscenes/framework/framework_16.tscn" id="2_kxkkf"]
 [ext_resource type="Shader" uid="uid://t8wpynl8ecsf" path="res://shaders/crt.gdshader" id="3_uh2b8"]
 [ext_resource type="Material" uid="uid://k830epaorhv" path="res://assets/textures/Wood066_1K-JPG/Wood066_1K-JPG.tres" id="4_uh2b8"]
 [ext_resource type="PackedScene" uid="uid://y8wwyc5wty76" path="res://scriptsnscenes/framework/framework_13.tscn" id="5_pme2s"]
@@ -167,7 +166,7 @@ shadow_enabled = true
 size = Vector2i(288, 162)
 
 [node name="Camera3D" type="Camera3D" parent="CRTContainer/SubViewport"]
-transform = Transform3D(0.41945204, -0.12633821, 0.89894307, 0, 0.99026805, 0.1391731, -0.9077775, -0.058376443, 0.41537, 0, 3.9585881, 3.0669127)
+transform = Transform3D(1, 0, 0, 0, 0.87085366, 0.49154234, 0, -0.49154234, 0.87085366, 0, 3.9585881, 3.0669127)
 current = true
 fov = 30.0
 
@@ -194,7 +193,7 @@ transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 1.04205, 0, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04205, -3.0559022e-10, -3.0559022e-10)
 
 [node name="LampLowPoly" parent="." instance=ExtResource("5_uu8of")]
-transform = Transform3D(0.028830886, -0.040850706, -1.7856411e-09, 0, -2.1855695e-09, 0.05, -0.040850706, -0.028830886, -1.2602381e-09, -3.2318294, 0, -1.959583)
+transform = Transform3D(0.0045429263, -0.049793184, -2.1765294e-09, 7.256543e-17, -2.1855693e-09, 0.049999997, -0.049793184, -0.0045429263, -1.9857777e-10, -3.6095743, 0, -0.4518497)
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="LampLowPoly"]
 transform = Transform3D(1, 0, 0, 0, 0.7594871, 0.65052235, 0, -0.65052235, 0.7594871, 0.058894157, -15.402547, 29.548502)
@@ -203,7 +202,3 @@ light_energy = 0.5
 spot_range = 6.248
 spot_angle = 50.89
 spot_angle_attenuation = 2.143545
-
-[node name="Framework16" parent="." instance=ExtResource("2_kxkkf")]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, -1.0159999, 0, 0)
-visible = false
