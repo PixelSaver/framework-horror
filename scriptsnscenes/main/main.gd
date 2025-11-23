@@ -4,6 +4,7 @@ class_name Main
 const CAM_CLOSE := Vector3(0, 2.457, 0.555)
 const CAM_MID := Vector3(0, 3, 1.04)
 const CAM_FAR := Vector3(0, 4, 3.06)
+const MARGIN := 0.3
 @export var cam : Camera3D
 
 func _ready() -> void:
@@ -30,8 +31,8 @@ func _send_to_subviewport(event: InputEvent, hit_pos: Vector3):
 		(local.z / mesh.size.y) + 0.5
 	)
 	
-	#if uv.x < 0 or uv.x > 1 or uv.y < 0 or uv.y > 1:
-		#return
+	if uv.x < 0-MARGIN or uv.x > 1+MARGIN or uv.y < 0-MARGIN or uv.y > 1+MARGIN:
+		return
 	print("uv: %s" % uv)
 	
 	var vp_pos = uv * Vector2(Global.framework_16.framework_viewport.size)
