@@ -21,38 +21,70 @@ func _on_hinge_anim(duration:float):
 	t.chain()
 	t.tween_property(cam, "position", CAM_CLOSE, duration)
 
+
+func _intersect_quad_plane(ray_origin: Vector3, ray_direction: Vector3) -> Dictionary:
+	var quad := Global.framework_16.screen_quad as MeshInstance3D
+	var mesh := quad.mesh as PlaneMesh
+	
+	# Get the quad's plane in world space
+	var quad_normal = quad.global_transform.basis.y  # PlaneMesh faces along +Y
+	var quad_center = quad.global_position
+	print("quad center: %s" % quad_center)
+	
+	# Check if ray is parallel to plane
+	var denom = quad_normal.dot(ray_direction)
+	if abs(denom) < 0.0001:
+		return {}
+	
+	# Calculate intersection point
+	var t = (quad_center - ray_origin).dot(quad_normal) / denom
+	if t < 0:
+		return {}  # Intersection behind camera
+	
+	var hit_pos = ray_origin + ray_direction * t
+	
+	# Convert to plane-local coordinates
+	var local_pos = quad.global_transform.affine_inverse() * hit_pos
+	
+	# Get coordinates along the plane (X and Z in local space)
+	var plane_x = local_pos.x
+	var plane_z = local_pos.z
+	
+	# Convert to UV (0-1 range)
+	var uv = Vector2(
+		(plane_x / mesh.size.x) + 0.5,
+		(plane_z / mesh.size.y) + 0.5
+	)
+	
+	print(hit_pos)
+	print(uv)
+	# Return empty dict if outside bounds
+	if uv.x < 0 or uv.x > 1 or uv.y < 0 or uv.y > 1:
+		return {}
+	# Return hit data
+	return {
+		"position": hit_pos,
+		"uv": uv,
+		"plane_coords": Vector2(plane_x, plane_z)
+	}
+
+func _send_to_subviewport(event: InputEvent, vp_pos: Vector2):
+	var ev = event.duplicate()
+	if ev is InputEventMouse:
+		ev.position = vp_pos
+	
+	Global.framework_16.framework_viewport.push_input(ev)
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
-		var space_state = get_world_3d().direct_space_state
 		var from = cam.project_ray_origin(event.position)
-		var to = from + cam.project_ray_normal(event.position) * 1000.0
+		var direction = cam.project_ray_normal(event.position)
 		
-		var query = PhysicsRayQueryParameters3D.create(from, to)
-		query.collide_with_bodies = true
+		var result = _intersect_quad_plane(from, direction)
 		
-		var result = space_state.intersect_ray(query)
-		if result: print("HIT")
-		
-		if result and result.collider.is_in_group("screen"):
-			_send_to_subviewport(event, result.position)
+		if not result.is_empty():
+			print("go")
+			var vp_pos = result.uv * Vector2(Global.framework_16.framework_viewport.size)
+			_send_to_subviewport(event, vp_pos)
 
-func _send_to_subviewport(event: InputEvent, hit_pos: Vector3):
-	print("go")
-	var quad := Global.framework_16.screen_quad as MeshInstance3D
-	var mesh := quad.mesh as QuadMesh
-	var local = quad.to_local(hit_pos)
-
-	# assuming your quad is scaled to actual width/height
-	var uv = Vector2(
-		(local.x / mesh.size.x) + 0.5,
-		(-local.y / mesh.size.y) + 0.5
-	)
-
-	if uv.x < 0 or uv.x > 1 or uv.y < 0 or uv.y > 1:
-		return
-
-	var vp_pos = uv * Global.framework_16.framework_viewport.size
 	
-	var ev = event.duplicate()
-	ev.position = vp_pos
-	Global.framework_16.framework_viewport.push_input(ev)
