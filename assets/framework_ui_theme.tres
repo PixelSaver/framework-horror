@@ -1,7 +1,20 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cs7kutpnn8qjg"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cs7kutpnn8qjg"]
 
 [ext_resource type="FontFile" uid="uid://dqvwixxgqx0lf" path="res://assets/fonts/dogica/TTF/dogicapixel.ttf" id="1_0a3de"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0a3de"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pe3bo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_33anr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u18lu"]
 
 [resource]
 default_font = ExtResource("1_0a3de")
 default_font_size = 50
+Button/styles/focus = SubResource("StyleBoxEmpty_0a3de")
+Button/styles/hover = SubResource("StyleBoxEmpty_pe3bo")
+Button/styles/normal = SubResource("StyleBoxEmpty_33anr")
+Button/styles/pressed = SubResource("StyleBoxEmpty_u18lu")
+VBoxContainer/constants/separation = 100

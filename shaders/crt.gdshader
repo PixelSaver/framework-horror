@@ -79,7 +79,7 @@ uniform float aspect : hint_range(0.5, 1.0) = 0.75;
 /**
 	This controls slight horizontal shaking. This is set to 0 (off) by default.
 	*/
-uniform float wobble_strength : hint_range(0.0, 1.0) = 0.0;
+uniform float wobble_strength : hint_range(0.0, 2.0) = 0.0;
 
 varying flat float wobble;
 

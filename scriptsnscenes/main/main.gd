@@ -42,8 +42,8 @@ func _send_to_subviewport(event: InputEvent, hit_pos: Vector3):
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
-		var from = cam.project_ray_origin(event.position*2/9.)
-		var to = from + cam.project_ray_normal(event.position*2/9.) * 1000.0
+		var from = cam.project_ray_origin(event.position/6)
+		var to = from + cam.project_ray_normal(event.position/6) * 1000.0
 		
 		var query = PhysicsRayQueryParameters3D.create(from, to)
 		query.collide_with_areas = true

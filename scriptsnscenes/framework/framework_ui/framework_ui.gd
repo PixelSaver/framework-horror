@@ -10,6 +10,8 @@ func _ready() -> void:
 	Global.boot_laptop.connect(anim_start)
 	logo.pivot_offset = logo.size/2.
 	title.hide()
+	logo.show()
+	
 
 func anim_start():
 	var t : = create_tween()
