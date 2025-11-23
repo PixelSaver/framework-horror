@@ -16,3 +16,8 @@ data_*/
 mono_crash.*.json
 /addons/godot_super-wakatime
 *.zip
+*.blend
+*.blend1
+assets/models/framework_cad/Assembly 1.gltf
+assets/models/framework_cad/Assembly 1.gltf.import
+assets/models/framework_cad/cad.blend.import
