@@ -12,7 +12,7 @@ var hinge_t : Tween
 
 func _ready() -> void:
 	Global.framework_16 = self
-	anim_hinge(1)
+	hinge.rotation.x = HINGE_START
 
 ## Animate the hinge, using -1 or 1 for direction
 func anim_hinge(dir:float) -> void:

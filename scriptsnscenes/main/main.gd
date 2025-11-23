@@ -6,14 +6,18 @@ const CAM_MID := Vector3(0, 3, 1.04)
 const CAM_FAR := Vector3(0, 4, 3.06)
 const MARGIN := 0.3
 @export var cam : Camera3D
+@export var anim_player : AnimationPlayer
 
 func _ready() -> void:
 	Global.hinge_anim.connect(_on_hinge_anim)
 	cam.position = CAM_FAR
+	anim_player.play("slide_in")
+	anim_player.animation_finished.connect(func(_name:StringName):
+		Global.framework_16.anim_hinge(1)
+		)
 func _process(_delta: float) -> void:
 	pass
 func _on_hinge_anim(duration:float):
-	print("HINGE")
 	var t : = create_tween()
 	t.set_trans(Tween.TRANS_CUBIC).set_parallel(true)
 	t.tween_property(cam, "position", CAM_MID, duration)
@@ -33,10 +37,9 @@ func _send_to_subviewport(event: InputEvent, hit_pos: Vector3):
 	
 	if uv.x < 0-MARGIN or uv.x > 1+MARGIN or uv.y < 0-MARGIN or uv.y > 1+MARGIN:
 		return
-	print("uv: %s" % uv)
 	
 	var vp_pos = uv * Vector2(Global.framework_16.framework_viewport.size)
-	print("pos: %s" % vp_pos)
+	
 	var ev = event.duplicate()
 	if ev is InputEventMouse:
 		ev.position = vp_pos
