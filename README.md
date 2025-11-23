@@ -133,6 +133,3 @@ Many thanks for these people for letting me use their work for free! See 'ATTRIB
 with Reserved Font Name Dogica.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
