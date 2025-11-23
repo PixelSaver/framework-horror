@@ -1,8 +1,10 @@
 extends Control
 class_name Menu
 
-const CAM_RIGHT_POS: Vector3 = Vector3(2.953, 0.709, 0.931)
+const CAM_RIGHT_POS: Vector3 = Vector3(2.953, 0.709, 1.58253)
 const CAM_RIGHT_ROT: Vector3 = Vector3(-8, 65.2, 0)
+const CAM_RETURN_POS: Vector3 = Vector3(0, 2.10325, 1.98516)
+const CAM_RETURN_ROT: Vector3 = Vector3(-29.4, 0, 0)
 
 var tweening : int = -2
 var t : Tween
@@ -28,8 +30,8 @@ func tween_cam(modifier:int):
 	var target_pos = Vector3(CAM_RIGHT_POS.x*modifier, CAM_RIGHT_POS.y, CAM_RIGHT_POS.z)
 	var target_rot = Vector3(CAM_RIGHT_ROT.x, CAM_RIGHT_ROT.y*modifier, CAM_RIGHT_ROT.z)
 	if tweening == 0:
-		target_pos = Vector3(0., 1.99, 1.084)
-		target_rot = Vector3(-29.4, 0., 0.)
+		target_pos = CAM_RETURN_POS
+		target_rot = CAM_RETURN_ROT
 	if t: t.kill()
 	t = create_tween().set_ease(Tween.EASE_OUT)
 	t.set_trans(Tween.TRANS_QUINT).set_parallel(true)
