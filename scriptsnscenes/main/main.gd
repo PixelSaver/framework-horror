@@ -54,10 +54,13 @@ func _input(event: InputEvent) -> void:
 		
 		if result and result.collider.is_in_group("screen"):
 			_send_to_subviewport(event, result.position)
-		elif result and result.collider.is_in_group("expansion_card"):
-			for child in result.get_children():
-				if child is not MeshInstance3D: continue
-				Global.outline_mesh(child)
+		if result and result.collider.is_in_group("expansion_card"):
+			Global.update_outlines.emit()
+			for child in result.collider.get_children():
+				if child is MeshInstance3D:
+					Global.current_outline = child.get_node("OutlineComponent")
+		else: Global.current_outline = null
+		Global.update_outlines.emit()
 	else:
 		Global.framework_13.framework_viewport.push_input(event)
 	

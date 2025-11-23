@@ -6,7 +6,7 @@
 render_priority = 0
 shader = ExtResource("1_g6isp")
 shader_parameter/step_count = 3
-shader_parameter/thickness = 6.000000074506
+shader_parameter/thickness = 1.0
 shader_parameter/edge_color = Color(1, 1, 1, 1)
-shader_parameter/fade_start = 100.0
-shader_parameter/fade_length = 200.0
+shader_parameter/fade_start = 1.0
+shader_parameter/fade_length = 1000.0

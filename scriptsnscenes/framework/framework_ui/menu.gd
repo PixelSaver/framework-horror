@@ -18,7 +18,7 @@ func _input(_event: InputEvent) -> void:
 	
 	if Input.is_action_pressed("a"):
 		tween_cam(-1)
-	elif Input.is_action_pressed("d"):
+	elif Input.is_action_pressed("d") or true:
 		tween_cam(1)
 	else:
 		tween_cam(0)
