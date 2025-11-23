@@ -8,6 +8,9 @@ func _ready() -> void:
 	mesh = get_parent()
 	Global.update_outlines.connect(_on_update)
 
+func is_outlined() -> bool:
+	return mesh.material_overlay != null
+
 func _on_update():
 	if Global.current_outline == self:
 		outline_parent(true)

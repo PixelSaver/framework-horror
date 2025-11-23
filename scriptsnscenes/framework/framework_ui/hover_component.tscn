@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccdwgwiky0mmk"]
-
-[ext_resource type="Script" uid="uid://b4rq8el25uwly" path="res://scriptsnscenes/components/hover_component.gd" id="1_fuuoo"]
-
-[node name="HoverComponent" type="Node"]
-script = ExtResource("1_fuuoo")

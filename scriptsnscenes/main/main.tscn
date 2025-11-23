@@ -167,9 +167,11 @@ shadow_enabled = true
 size = Vector2i(288, 162)
 
 [node name="Camera3D" type="Camera3D" parent="CRTContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.8708535, 0.49154243, 0, -0.49154243, 0.8708535, 0, 3.9585881, 3.0669127)
+transform = Transform3D(1, 0, 0, 0, 0.8708534, 0.4915425, 0, -0.4915425, 0.8708534, 0, 3.9585881, 3.0669127)
 current = true
 fov = 30.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CRTContainer/SubViewport"]
 
 [node name="CRTRect" type="ColorRect" parent="CRTContainer"]
 material = SubResource("ShaderMaterial_uu8of")
