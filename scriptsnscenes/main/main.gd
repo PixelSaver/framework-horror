@@ -18,33 +18,28 @@ func _on_hinge_anim(duration:float):
 	t.tween_property(cam, "position", CAM_MID, duration)
 	t.chain()
 	t.tween_property(cam, "position", CAM_CLOSE, duration)
+
 func _send_to_subviewport(event: InputEvent, hit_pos: Vector3):
 	var quad := Global.framework_16.screen_quad as MeshInstance3D
 	var mesh := quad.mesh as PlaneMesh
 	var local = quad.to_local(hit_pos)
-	#var local = hit_pos
-	print("local: %s" % local)
 	
-	# Convert 3D hit position to UV coordinates (0-1 range)
+	# UV coordinates (0-1 range)
 	var uv = Vector2(
 		(local.x / mesh.size.x) + 0.5,
-		(-local.z / mesh.size.y) + 0.5
+		(local.z / mesh.size.y) + 0.5
 	)
+	
+	#if uv.x < 0 or uv.x > 1 or uv.y < 0 or uv.y > 1:
+		#return
 	print("uv: %s" % uv)
 	
-	# Check if UV is within valid range
-	if uv.x < 0 or uv.x > 1 or uv.y < 0 or uv.y > 1:
-		return
-	
-	# Convert UV to viewport pixel coordinates
 	var vp_pos = uv * Vector2(Global.framework_16.framework_viewport.size)
-	
-	# Clone and modify the event
+	print("pos: %s" % vp_pos)
 	var ev = event.duplicate()
 	if ev is InputEventMouse:
 		ev.position = vp_pos
-	print("goes")
-	Global.framework_16.framework_viewport.push_input(ev)
+	Global.framework_16.framework_viewport.push_input(ev, true)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
@@ -56,7 +51,7 @@ func _input(event: InputEvent) -> void:
 		query.collide_with_bodies = true
 		
 		var result = get_world_3d().direct_space_state.intersect_ray(query)
-		# Check if we hit the correct collider
+		
 		if result and result.collider.is_in_group("screen"):
 			_send_to_subviewport(event, result.position)
 	

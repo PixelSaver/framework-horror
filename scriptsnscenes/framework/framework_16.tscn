@@ -127,10 +127,11 @@ size = Vector2(2, 1.25)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_5ubbt"]
 
-[node name="Framework16" type="Node3D" node_paths=PackedStringArray("hinge", "framework_viewport", "screen_quad")]
+[node name="Framework16" type="Node3D" node_paths=PackedStringArray("hinge", "framework_viewport", "framework_ui", "screen_quad")]
 script = ExtResource("1_uc85b")
 hinge = NodePath("Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge")
 framework_viewport = NodePath("SubViewport")
+framework_ui = NodePath("SubViewport/FrameworkUI")
 screen_quad = NodePath("Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge/Screen/StaticBody3D2/ScreenQuad16_10")
 
 [node name="Sketchfab_model" type="Node3D" parent="."]

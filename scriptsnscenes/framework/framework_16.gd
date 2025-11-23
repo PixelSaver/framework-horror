@@ -6,6 +6,7 @@ const HINGE_START : float = -PI
 const HINGE_END : float =  -PI/3.
 @export var hinge : Node3D
 @export var framework_viewport : SubViewport
+@export var framework_ui : FrameworkUI
 @export var screen_quad : MeshInstance3D
 var hinge_t : Tween
 

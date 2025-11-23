@@ -1,31 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://crdp6khqwel6y"]
+[gd_scene load_steps=6 format=3 uid="uid://crdp6khqwel6y"]
 
 [ext_resource type="Theme" uid="uid://cs7kutpnn8qjg" path="res://assets/framework_ui_theme.tres" id="1_ntr6t"]
 [ext_resource type="Script" uid="uid://lyfjha44qv6r" path="res://scriptsnscenes/framework/framework_ui/framework_ui.gd" id="1_r0713"]
+[ext_resource type="Script" uid="uid://c1e8lhcob3nmc" path="res://scriptsnscenes/framework/framework_ui/control.gd" id="3_62as4"]
 [ext_resource type="Texture2D" uid="uid://brbsek6w02hvu" path="res://assets/framework_logo.png" id="3_keycq"]
+[ext_resource type="Script" uid="uid://1oj7f5ueja7c" path="res://scriptsnscenes/framework/framework_ui/button.gd" id="4_keycq"]
 
-[node name="FrameworkUI" type="CanvasLayer" node_paths=PackedStringArray("logo", "title")]
-follow_viewport_enabled = true
+[node name="FrameworkUI" type="CanvasLayer" node_paths=PackedStringArray("logo", "title", "control")]
 script = ExtResource("1_r0713")
-logo = NodePath("Framework/Logo")
-title = NodePath("Framework/Title")
+logo = NodePath("Control/Logo")
+title = NodePath("Control/Title")
+control = NodePath("Control")
 
-[node name="Framework" type="Control" parent="."]
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
+mouse_filter = 2
 theme = ExtResource("1_ntr6t")
+script = ExtResource("3_62as4")
 
-[node name="Title" type="RichTextLabel" parent="Framework"]
+[node name="Title" type="RichTextLabel" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
+mouse_filter = 2
 bbcode_enabled = true
 text = "[font_size=120][b]Framework 16
 "
@@ -34,7 +41,7 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Logo" type="TextureRect" parent="Framework"]
+[node name="Logo" type="TextureRect" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,15 +50,22 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = 6.2831855
 pivot_offset = Vector2(864, 486)
+focus_mode = 1
+mouse_filter = 2
 texture = ExtResource("3_keycq")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="Framework"]
+[node name="Button" type="Button" parent="Control"]
 layout_mode = 0
 offset_left = 54.0
 offset_top = 23.0
 offset_right = 751.0
 offset_bottom = 443.0
+focus_mode = 1
 text = "Hey
 whats up@!!!!!"
+script = ExtResource("4_keycq")
+
+[connection signal="mouse_entered" from="Control/Button" to="Control/Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Button" to="Control/Button" method="_on_mouse_exited"]

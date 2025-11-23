@@ -4,6 +4,7 @@ extends CanvasLayer
 const BOOT_HEIGHT_OFFSET : float = -1000
 @export var logo : TextureRect
 @export var title : RichTextLabel
+@export var control : Control
 
 func _ready() -> void:
 	Global.boot_laptop.connect(anim_start)
