@@ -4,10 +4,14 @@ class_name Main
 const MARGIN := 0.3
 @export var cam : Camera3D
 @export var anim_player : AnimationPlayer
+@export var cam_viewport : SubViewport
 
 func _ready() -> void:
 	Global.hinge_anim.connect(_on_hinge_anim)
 	Global.main = self
+	
+	cam_viewport.size = get_viewport().get_visible_rect().size / Global.viewport_mini_scale
+	
 	anim_player.play("cam_pos", -1, 0.)
 	anim_player.advance(0)
 	anim_player.play("slide_in")
@@ -43,8 +47,9 @@ func _send_to_subviewport(event: InputEvent, hit_pos: Vector3):
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
-		var from = cam.project_ray_origin(event.position/6)
-		var to = from + cam.project_ray_normal(event.position/6) * 1000.0
+		var scaled_pos = event.position / Global.viewport_mini_scale
+		var from = cam.project_ray_origin(scaled_pos)
+		var to = from + cam.project_ray_normal(scaled_pos) * 1000.0
 		
 		var query = PhysicsRayQueryParameters3D.create(from, to)
 		#query.collide_with_areas = true
