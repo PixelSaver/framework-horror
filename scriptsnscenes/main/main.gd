@@ -26,29 +26,30 @@ func _intersect_quad_plane(ray_origin: Vector3, ray_direction: Vector3) -> Dicti
 	var quad := Global.framework_16.screen_quad as MeshInstance3D
 	var mesh := quad.mesh as PlaneMesh
 	
-	# Get the quad's plane in world space
-	var quad_normal = quad.global_transform.basis.y  # PlaneMesh faces along +Y
+	var quad_normal = quad.global_transform.basis.y
 	var quad_center = quad.global_position
-	print("quad center: %s" % quad_center)
 	
-	# Check if ray is parallel to plane
 	var denom = quad_normal.dot(ray_direction)
 	if abs(denom) < 0.0001:
 		return {}
 	
-	# Calculate intersection point
 	var t = (quad_center - ray_origin).dot(quad_normal) / denom
 	if t < 0:
-		return {}  # Intersection behind camera
+		return {}
 	
 	var hit_pos = ray_origin + ray_direction * t
-	
-	# Convert to plane-local coordinates
 	var local_pos = quad.global_transform.affine_inverse() * hit_pos
 	
-	# Get coordinates along the plane (X and Z in local space)
 	var plane_x = local_pos.x
 	var plane_z = local_pos.z
+	
+	# Check bounds using mesh size (accounting for scale if needed)
+	var half_width = mesh.size.x / 2.0
+	var half_height = mesh.size.y / 2.0
+	
+	# Check if outside the actual plane bounds
+	if abs(plane_x) > half_width or abs(plane_z) > half_height:
+		return {}
 	
 	# Convert to UV (0-1 range)
 	var uv = Vector2(
@@ -56,12 +57,8 @@ func _intersect_quad_plane(ray_origin: Vector3, ray_direction: Vector3) -> Dicti
 		(plane_z / mesh.size.y) + 0.5
 	)
 	
-	print(hit_pos)
-	print(uv)
-	# Return empty dict if outside bounds
-	if uv.x < 0 or uv.x > 1 or uv.y < 0 or uv.y > 1:
-		return {}
-	# Return hit data
+	print("UV: %s" % uv)
+	
 	return {
 		"position": hit_pos,
 		"uv": uv,
