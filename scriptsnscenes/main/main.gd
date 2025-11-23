@@ -7,6 +7,8 @@ const MARGIN := 0.3
 
 func _ready() -> void:
 	Global.hinge_anim.connect(_on_hinge_anim)
+	anim_player.play("cam_pos", -1, 0.)
+	anim_player.advance(0)
 	anim_player.play("slide_in")
 	anim_player.animation_finished.connect(func(_name:StringName):
 		if _name == "slide_in":

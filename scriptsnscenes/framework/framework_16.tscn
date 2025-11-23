@@ -132,7 +132,7 @@ script = ExtResource("1_uc85b")
 hinge = NodePath("Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge")
 framework_viewport = NodePath("SubViewport")
 framework_ui = NodePath("SubViewport/FrameworkUI")
-screen_quad = NodePath("Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge/Screen/StaticBody3D2/ScreenQuad16_10")
+screen_quad = NodePath("Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge/Screen/ScreenBody/ScreenQuad16_10")
 
 [node name="Sketchfab_model" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -1, 2.220446e-16, 0, 0, 0)
@@ -169,14 +169,14 @@ transform = Transform3D(-2.6719255e-07, 6.1126533, 0, -6.1126533, -2.6719255e-07
 mesh = SubResource("ArrayMesh_yyq5d")
 skeleton = NodePath("")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge/Screen" groups=["screen"]]
+[node name="ScreenBody" type="StaticBody3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge/Screen" groups=["screen"]]
 
-[node name="ScreenQuad16_10" type="MeshInstance3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge/Screen/StaticBody3D2" groups=["screen"]]
+[node name="ScreenQuad16_10" type="MeshInstance3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge/Screen/ScreenBody" groups=["screen"]]
 transform = Transform3D(1, 2.1316282e-14, -1.7484552e-07, 1.7484558e-07, 2.9802322e-08, 1, 2.372502e-15, -1, 2.9802322e-08, -2.1316282e-14, 4.7683716e-07, 0.09164414)
 mesh = SubResource("PlaneMesh_uc85b")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge/Screen/StaticBody3D2" groups=["screen"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge/Screen/ScreenBody" groups=["screen"]]
 transform = Transform3D(1, 1.7484555e-07, -1.7484557e-07, 1.7484554e-07, -2.9802322e-08, 1, 1.7484552e-07, -1, -2.9802322e-08, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_5ubbt")
 

@@ -88,7 +88,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-3.142, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-1.047, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
@@ -123,20 +123,21 @@ tracks/3/keys = PackedFloat32Array(0, 1, 0, 3.9585881, 3.0669127)
 
 [sub_resource type="Animation" id="Animation_pme2s"]
 resource_name = "cam_pos"
+length = 2.0
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("CRTContainer/SubViewport/Camera3D")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 4, 3.06, 0.3, 1, 0, 1.9275632, 3.2210839, 1, 1, 0, 1.7257366, 1.3300539)
+tracks/0/keys = PackedFloat32Array(0.033333335, 1, 0, 4, 3.06, 0.53333336, 1, 0, 1.9275632, 3.2210839, 2, 1, 0, 1.98984, 1.0840032)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("CRTContainer/SubViewport/Camera3D")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -0.4491085, 0, 0, 0.89347726, 0.3, 1, -0.18246715, 0, 0, 0.98321193, 1, 1, -0.19041489, 0, 0, 0.9817037)
+tracks/1/keys = PackedFloat32Array(0.033333335, 1, -0.4491085, 0, 0, 0.89347726, 0.53333336, 1, -0.18246715, 0, 0, 0.98321193, 2, 1, -0.25411245, 0, 0, 0.96717465)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pme2s"]
 _data = {
@@ -163,7 +164,7 @@ shadow_enabled = true
 size = Vector2i(384, 216)
 
 [node name="Camera3D" type="Camera3D" parent="CRTContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.5966031, 0.8025364, 0, -0.8025364, 0.5966031, 0, 3.9585881, 3.0669127)
+transform = Transform3D(1, 0, 0, 0, 0.8708536, 0.4915423, 0, -0.4915423, 0.8708536, 0, 3.9585881, 3.0669127)
 current = true
 fov = 30.0
 
