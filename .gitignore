@@ -23,3 +23,5 @@ assets/models/framework_cad/Assembly 1.gltf.import
 assets/models/framework_cad/cad.blend.import
 *.step
 assets/models/framework_cad/motherboard/mobo.glb
+assets/models/framework_cad/motherboard/mobo.blend.import
+assets/models/framework_cad/motherboard/mobo.glb.import
