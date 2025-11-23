@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b1aosu42tvpdh"]
+[gd_scene load_steps=15 format=3 uid="uid://b1aosu42tvpdh"]
 
 [ext_resource type="Script" uid="uid://b87jggvw4whfb" path="res://scriptsnscenes/main/main.gd" id="1_j6fwf"]
 [ext_resource type="PackedScene" uid="uid://bo8tvfbkmmes6" path="res://scriptsnscenes/framework/framework_16.tscn" id="2_kxkkf"]
@@ -113,10 +113,35 @@ tracks/2/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CRTContainer/SubViewport/Camera3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 3.9585881, 3.0669127)
+
+[sub_resource type="Animation" id="Animation_pme2s"]
+resource_name = "cam_pos"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CRTContainer/SubViewport/Camera3D")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 4, 3.06, 0.3, 1, 0, 1.9275632, 3.2210839, 1, 1, 0, 1.7257366, 1.3300539)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CRTContainer/SubViewport/Camera3D")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.4491085, 0, 0, 0.89347726, 0.3, 1, -0.18246715, 0, 0, 0.98321193, 1, 1, -0.19041489, 0, 0, 0.9817037)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pme2s"]
 _data = {
 &"RESET": SubResource("Animation_uu8of"),
+&"cam_pos": SubResource("Animation_pme2s"),
 &"slide_in": SubResource("Animation_uh2b8")
 }
 
@@ -138,7 +163,7 @@ shadow_enabled = true
 size = Vector2i(384, 216)
 
 [node name="Camera3D" type="Camera3D" parent="CRTContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 3.9585881, 3.0669127)
+transform = Transform3D(1, 0, 0, 0, 0.5966031, 0.8025364, 0, -0.8025364, 0.5966031, 0, 3.9585881, 3.0669127)
 current = true
 fov = 30.0
 

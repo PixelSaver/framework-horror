@@ -160,7 +160,7 @@ mesh = SubResource("PlaneMesh_giokw")
 skeleton = NodePath("../..")
 
 [node name="Hinge" type="Node3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi"]
-transform = Transform3D(2.1452903e-08, -0.16359508, -6.2515743e-16, -0.10488543, -1.375406e-08, 0.12554839, -0.12554839, -1.6463682e-08, -0.10488543, 0.00038273376, 0.7293509, 0.10672661)
+transform = Transform3D(-5.234872e-09, -0.16359508, -7.1509674e-09, -0.08179753, -3.5754837e-09, 0.1416775, -0.1416775, 8.109016e-09, -0.08179753, 0.00038273376, 0.7293509, 0.10672661)
 
 [node name="Screen" type="Node3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge"]
 transform = Transform3D(-2.6719255e-07, 6.1126533, 0, -6.1126533, -2.6719255e-07, 0, 0, 0, 6.1126533, -4.4582696, 0.002339714, -0.6523833)

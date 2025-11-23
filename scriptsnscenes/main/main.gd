@@ -1,28 +1,21 @@
 extends Node3D
 class_name Main
 
-const CAM_CLOSE := Vector3(0, 2.457, 0.555)
-const CAM_MID := Vector3(0, 3, 1.04)
-const CAM_FAR := Vector3(0, 4, 3.06)
 const MARGIN := 0.3
 @export var cam : Camera3D
 @export var anim_player : AnimationPlayer
 
 func _ready() -> void:
 	Global.hinge_anim.connect(_on_hinge_anim)
-	cam.position = CAM_FAR
 	anim_player.play("slide_in")
 	anim_player.animation_finished.connect(func(_name:StringName):
-		Global.framework_16.anim_hinge(1)
+		if _name == "slide_in":
+			Global.framework_16.anim_hinge(1)
 		)
 func _process(_delta: float) -> void:
 	pass
-func _on_hinge_anim(duration:float):
-	var t : = create_tween()
-	t.set_trans(Tween.TRANS_CUBIC).set_parallel(true)
-	t.tween_property(cam, "position", CAM_MID, duration)
-	t.chain()
-	t.tween_property(cam, "position", CAM_CLOSE, duration)
+func _on_hinge_anim(_duration:float):
+	anim_player.play("cam_pos")
 
 func _send_to_subviewport(event: InputEvent, hit_pos: Vector3):
 	var quad := Global.framework_16.screen_quad as MeshInstance3D
