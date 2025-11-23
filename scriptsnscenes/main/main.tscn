@@ -26,15 +26,15 @@ viewport_path = NodePath("CRTContainer/SubViewport")
 resource_local_to_scene = true
 shader = ExtResource("3_uh2b8")
 shader_parameter/tex = SubResource("ViewportTexture_pme2s")
-shader_parameter/mask_type = 1
+shader_parameter/mask_type = 2
 shader_parameter/curve = 0.0
-shader_parameter/sharpness = 0.6666667
-shader_parameter/color_offset = 0.0
+shader_parameter/sharpness = 0.9450000211375
+shader_parameter/color_offset = -0.5
 shader_parameter/mask_brightness = 1.0
 shader_parameter/scanline_brightness = 1.0
 shader_parameter/min_scanline_thickness = 0.5
 shader_parameter/aspect = 0.75
-shader_parameter/wobble_strength = 0.0
+shader_parameter/wobble_strength = 1.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_uu8of"]
 lightmap_size_hint = Vector2i(52, 12)
@@ -52,12 +52,10 @@ environment = SubResource("Environment_uu8of")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Framework16" parent="." instance=ExtResource("2_kxkkf")]
-
 [node name="CRTContainer" type="Node" parent="."]
 
 [node name="SubViewport" type="SubViewport" parent="CRTContainer"]
-size = Vector2i(1728, 972)
+size = Vector2i(288, 162)
 
 [node name="Camera3D" type="Camera3D" parent="CRTContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -4.7683716e-07, 4.287052, 3.3116207)
@@ -74,3 +72,5 @@ grow_vertical = 2
 
 [node name="Table" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_uu8of")
+
+[node name="Framework16" parent="." instance=ExtResource("2_kxkkf")]

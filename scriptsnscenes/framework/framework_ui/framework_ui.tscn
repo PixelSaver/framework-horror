@@ -4,10 +4,11 @@
 [ext_resource type="Script" uid="uid://lyfjha44qv6r" path="res://scriptsnscenes/framework/framework_ui/framework_ui.gd" id="1_r0713"]
 [ext_resource type="Texture2D" uid="uid://brbsek6w02hvu" path="res://assets/framework_logo.png" id="3_keycq"]
 
-[node name="FrameworkUI" type="CanvasLayer" node_paths=PackedStringArray("logo")]
+[node name="FrameworkUI" type="CanvasLayer" node_paths=PackedStringArray("logo", "title")]
 follow_viewport_enabled = true
 script = ExtResource("1_r0713")
 logo = NodePath("Framework/Logo")
+title = NodePath("Framework/Title")
 
 [node name="Framework" type="Control" parent="."]
 layout_mode = 3
@@ -19,7 +20,6 @@ grow_vertical = 2
 theme = ExtResource("1_ntr6t")
 
 [node name="Title" type="RichTextLabel" parent="Framework"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,7 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[font_size=250]Framework 16
+text = "[font_size=200]Framework 16
 "
 fit_content = true
 scroll_active = false
@@ -41,6 +41,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 6.2831855
+pivot_offset = Vector2(864, 486)
 texture = ExtResource("3_keycq")
 expand_mode = 2
 stretch_mode = 5
