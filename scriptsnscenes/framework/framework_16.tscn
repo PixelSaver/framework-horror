@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=4 uid="uid://bo8tvfbkmmes6"]
+[gd_scene load_steps=17 format=4 uid="uid://bo8tvfbkmmes6"]
 
 [ext_resource type="Material" uid="uid://b5s44xkvup25b" path="res://assets/models/framework_16_laptop/materials/Weapon_plastic.tres" id="1_7jfrk"]
 [ext_resource type="Script" uid="uid://hgmw5svote6k" path="res://scriptsnscenes/framework/framework_16.gd" id="1_uc85b"]
 [ext_resource type="Material" uid="uid://dhjtkrgwvobes" path="res://assets/models/framework_16_laptop/materials/KEYBOARD.tres" id="2_uc85b"]
 [ext_resource type="PackedScene" uid="uid://crdp6khqwel6y" path="res://scriptsnscenes/framework/framework_ui/framework_ui.tscn" id="4_1i0nd"]
+[ext_resource type="Texture2D" uid="uid://bsg6tsl7ofpds" path="res://assets/textures/keyboard_1.png" id="4_5ubbt"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_w0acr"]
 _surfaces = [{
@@ -69,6 +70,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_155e4")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkcon"]
+albedo_texture = ExtResource("4_5ubbt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_giokw"]
+material = SubResource("StandardMaterial3D_gkcon")
+size = Vector2(2.031, 1.354)
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_aqsp5"]
 _surfaces = [{
 "aabb": AABB(-1.0166458, -0.67647606, 0.047984365, 2.0332916, 1.405787, 0.059921924),
@@ -112,6 +120,7 @@ albedo_texture = SubResource("ViewportTexture_5ubbt")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_uc85b"]
 resource_local_to_scene = true
+lightmap_size_hint = Vector2i(12, 8)
 material = SubResource("StandardMaterial3D_4382l")
 size = Vector2(2, 1.25)
 
@@ -135,8 +144,13 @@ mesh = SubResource("ArrayMesh_rteec")
 skeleton = NodePath("")
 
 [node name="Chassi_KEYBOARD_0" type="MeshInstance3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi"]
+visible = false
 mesh = SubResource("ArrayMesh_2waqh")
 skeleton = NodePath("")
+
+[node name="K1" type="MeshInstance3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.087)
+mesh = SubResource("PlaneMesh_giokw")
 
 [node name="Hinge" type="Node3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi"]
 transform = Transform3D(2.1452903e-08, -0.16359508, -6.2515743e-16, -0.10488543, -1.375406e-08, 0.12554839, -0.12554839, -1.6463682e-08, -0.10488543, 0.00038273376, 0.7293509, 0.10672661)
@@ -153,5 +167,6 @@ transform = Transform3D(1, -1.0894682e-14, -1.7484552e-07, 1.7484554e-07, -4.371
 mesh = SubResource("PlaneMesh_uc85b")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1728, 972)
 
 [node name="FrameworkUI" parent="SubViewport" instance=ExtResource("4_1i0nd")]

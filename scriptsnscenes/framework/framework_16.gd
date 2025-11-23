@@ -23,3 +23,6 @@ func anim_hinge(dir:float) -> void:
 	hinge_t = create_tween()
 	hinge_t.set_trans(Tween.TRANS_QUINT)
 	hinge_t.tween_property(hinge, "rotation:x", local_hinge_end, 1.)
+	hinge_t.tween_callback(func():
+		Global.boot_laptop.emit()
+	)
