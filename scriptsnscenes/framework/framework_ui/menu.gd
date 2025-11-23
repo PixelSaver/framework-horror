@@ -15,7 +15,6 @@ func _input(event: InputEvent) -> void:
 	if not visible or disabled: return
 	
 	if Input.is_action_pressed("a"):
-		print("Going")
 		tween_cam(-1)
 	elif Input.is_action_pressed("d"):
 		tween_cam(1)
@@ -25,7 +24,6 @@ func _input(event: InputEvent) -> void:
 ## Tweening, 1 means right, 0 means back, and -1 means left
 func tween_cam(modifier:int):
 	if tweening == modifier: return # -1, 0, and 1 are only valid modifiers
-	print("really going")
 	tweening = modifier
 	var target_pos = Vector3(CAM_RIGHT_POS.x*modifier, CAM_RIGHT_POS.y, CAM_RIGHT_POS.z)
 	var target_rot = Vector3(CAM_RIGHT_ROT.x, CAM_RIGHT_ROT.y*modifier, CAM_RIGHT_ROT.z)

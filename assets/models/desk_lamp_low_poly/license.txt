@@ -1,0 +1,11 @@
+Model Information:
+* title:	Desk Lamp Low Poly
+* source:	https://sketchfab.com/3d-models/desk-lamp-low-poly-0dded6b36c464294a0ab966b18109f6d
+* author:	Kozlov Maksim (https://sketchfab.com/kozlovchik)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Desk Lamp Low Poly" (https://sketchfab.com/3d-models/desk-lamp-low-poly-0dded6b36c464294a0ab966b18109f6d) by Kozlov Maksim (https://sketchfab.com/kozlovchik) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
