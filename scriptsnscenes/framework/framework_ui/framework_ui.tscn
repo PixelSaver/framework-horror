@@ -46,3 +46,12 @@ pivot_offset = Vector2(864, 486)
 texture = ExtResource("3_keycq")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="Button" type="Button" parent="Framework"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 23.0
+offset_right = 751.0
+offset_bottom = 443.0
+text = "Hey
+whats up@!!!!!"

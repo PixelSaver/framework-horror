@@ -42,8 +42,9 @@ material = ExtResource("4_uh2b8")
 size = Vector2(10, 5)
 center_offset = Vector3(0, -0.01, 0)
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("cam")]
 script = ExtResource("1_j6fwf")
+cam = NodePath("CRTContainer/SubViewport/Camera3D")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uu8of")
@@ -55,10 +56,10 @@ shadow_enabled = true
 [node name="CRTContainer" type="Node" parent="."]
 
 [node name="SubViewport" type="SubViewport" parent="CRTContainer"]
-size = Vector2i(288, 162)
+size = Vector2i(384, 216)
 
 [node name="Camera3D" type="Camera3D" parent="CRTContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -4.7683716e-07, 4.287052, 3.3116207)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 3.9585881, 3.0669127)
 current = true
 fov = 30.0
 
