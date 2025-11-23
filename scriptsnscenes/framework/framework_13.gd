@@ -19,7 +19,6 @@ func _ready() -> void:
 	t_right = get_tree().get_nodes_in_group("tween_right")
 
 func anim_right(backwards:bool=false):
-	print("go right")
 	for thing in t_right:
 		var tweenable : Tweenable = thing.get_node_or_null("Tweenable")
 		tweenable.tween(backwards)

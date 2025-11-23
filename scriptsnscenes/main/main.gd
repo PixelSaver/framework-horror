@@ -47,13 +47,15 @@ func _input(event: InputEvent) -> void:
 		var to = from + cam.project_ray_normal(event.position/6) * 1000.0
 		
 		var query = PhysicsRayQueryParameters3D.create(from, to)
-		query.collide_with_areas = true
+		#query.collide_with_areas = true
 		query.collide_with_bodies = true
 		
 		var result = get_world_3d().direct_space_state.intersect_ray(query)
 		
 		if result and result.collider.is_in_group("screen"):
 			_send_to_subviewport(event, result.position)
+		elif result and result.collider.is_in_group("expansion_card"):
+			pass
 	else:
 		Global.framework_13.framework_viewport.push_input(event)
 	
