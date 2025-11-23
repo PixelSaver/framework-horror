@@ -2,7 +2,7 @@
 
 Yup.
 
-"Framework 16 Laptop" (https://skfb.ly/oULEN) by pricrich is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/).
+https://godotshaders.com/shader/thick-outline-post-process-shader/
 
 "Desk Lamp Low Poly" (https://skfb.ly/6T6qP) by Kozlov Maksim is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 

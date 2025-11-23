@@ -55,7 +55,9 @@ func _input(event: InputEvent) -> void:
 		if result and result.collider.is_in_group("screen"):
 			_send_to_subviewport(event, result.position)
 		elif result and result.collider.is_in_group("expansion_card"):
-			pass
+			for child in result.get_children():
+				if child is not MeshInstance3D: continue
+				Global.outline_mesh(child)
 	else:
 		Global.framework_13.framework_viewport.push_input(event)
 	
