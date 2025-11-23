@@ -55,7 +55,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1.016, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
@@ -116,7 +116,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-3.589, -0.25, 0, 0.25, 0, 1.016, -0.16666663, -0.82116175, 0.20000005, -0.004812479, 1.016, -0.13332789, -0.017863141, 0.13333333, 0.01786387),
+"points": PackedFloat32Array(-4.63105, -0.25, 0, 0.25, 0, 1.04205, -0.16666663, -0.82116175, 0.20000005, -0.004812479, 1.04205, -0.13332789, -0.017863141, 0.13333333, 0.01786387),
 "times": PackedFloat32Array(0, 0.6666666, 1)
 }
 tracks/1/type = "bezier"
@@ -202,16 +202,15 @@ libraries = {
 }
 
 [node name="rot_corner" type="Node3D" parent="."]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 1.016, 0, 0)
-
-[node name="Framework16" parent="rot_corner" instance=ExtResource("2_kxkkf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.016, 0, 0)
-visible = false
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Framework13" parent="rot_corner" instance=ExtResource("5_pme2s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0159999, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04205, -3.0559022e-10, -3.0559022e-10)
 
-[node name="ScreenQuad16_10" parent="rot_corner/Framework13/Model/Hinge/ScreenBody" index="0"]
+[node name="Hinge" parent="rot_corner/Framework13/Model" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, -0.003985375, 0.0042190845)
+
+[node name="ScreenQuad3_2" parent="rot_corner/Framework13/Model/Hinge/ScreenBody" index="0"]
 mesh = SubResource("PlaneMesh_xx665")
 
 [node name="LampLowPoly" parent="." instance=ExtResource("5_uu8of")]
@@ -224,5 +223,9 @@ light_energy = 0.5
 spot_range = 6.248
 spot_angle = 50.89
 spot_angle_attenuation = 2.143545
+
+[node name="Framework16" parent="." instance=ExtResource("2_kxkkf")]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, -1.0159999, 0, 0)
+visible = false
 
 [editable path="rot_corner/Framework13"]
