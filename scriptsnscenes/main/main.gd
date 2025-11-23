@@ -7,6 +7,7 @@ const MARGIN := 0.3
 
 func _ready() -> void:
 	Global.hinge_anim.connect(_on_hinge_anim)
+	Global.main = self
 	anim_player.play("cam_pos", -1, 0.)
 	anim_player.advance(0)
 	anim_player.play("slide_in")
@@ -53,4 +54,6 @@ func _input(event: InputEvent) -> void:
 		
 		if result and result.collider.is_in_group("screen"):
 			_send_to_subviewport(event, result.position)
+	else:
+		Global.framework_16.framework_viewport.push_input(event)
 	

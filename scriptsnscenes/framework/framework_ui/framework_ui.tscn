@@ -1,21 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://crdp6khqwel6y"]
+[gd_scene load_steps=6 format=3 uid="uid://crdp6khqwel6y"]
 
 [ext_resource type="Theme" uid="uid://cs7kutpnn8qjg" path="res://assets/framework_ui_theme.tres" id="1_ntr6t"]
 [ext_resource type="Script" uid="uid://lyfjha44qv6r" path="res://scriptsnscenes/framework/framework_ui/framework_ui.gd" id="1_r0713"]
 [ext_resource type="Texture2D" uid="uid://brbsek6w02hvu" path="res://assets/framework_logo.png" id="3_keycq"]
 [ext_resource type="Script" uid="uid://b4rq8el25uwly" path="res://scriptsnscenes/components/hover_component.gd" id="4_keycq"]
+[ext_resource type="Script" uid="uid://nwdscuore776" path="res://scriptsnscenes/framework/framework_ui/menu.gd" id="5_62as4"]
 
-[node name="FrameworkUI" type="CanvasLayer" node_paths=PackedStringArray("logo", "title", "control", "buttons", "but_again", "but_move_on", "but_quit")]
+[node name="FrameworkUI" type="CanvasLayer" node_paths=PackedStringArray("logo", "title", "boot", "buttons", "but_again", "but_move_on", "but_quit", "menu")]
 script = ExtResource("1_r0713")
-logo = NodePath("Control/Logo")
-title = NodePath("Control/Title")
-control = NodePath("Control")
-buttons = NodePath("Control/Buttons")
-but_again = NodePath("Control/Buttons/Again")
-but_move_on = NodePath("Control/Buttons/MoveOn")
-but_quit = NodePath("Control/Buttons/Quit")
+logo = NodePath("Boot/Logo")
+title = NodePath("Boot/Title")
+boot = NodePath("Boot")
+buttons = NodePath("Boot/Buttons")
+but_again = NodePath("Boot/Buttons/Again")
+but_move_on = NodePath("Boot/Buttons/MoveOn")
+but_quit = NodePath("Boot/Buttons/Quit")
+menu = NodePath("Menu")
 
-[node name="Control" type="Control" parent="."]
+[node name="Boot" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +29,7 @@ focus_mode = 1
 mouse_filter = 2
 theme = ExtResource("1_ntr6t")
 
-[node name="Title" type="RichTextLabel" parent="Control"]
+[node name="Title" type="RichTextLabel" parent="Boot"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,7 +46,8 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Logo" type="TextureRect" parent="Control"]
+[node name="Logo" type="TextureRect" parent="Boot"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,7 +62,7 @@ texture = ExtResource("3_keycq")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Buttons" type="VBoxContainer" parent="Control"]
+[node name="Buttons" type="VBoxContainer" parent="Boot"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.65
@@ -67,26 +71,54 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Again" type="Button" parent="Control/Buttons"]
-layout_mode = 2
-text = "See that again!"
-
-[node name="HoverComponent" type="Node" parent="Control/Buttons/Again"]
-script = ExtResource("4_keycq")
-metadata/_custom_type_script = "uid://b4rq8el25uwly"
-
-[node name="MoveOn" type="Button" parent="Control/Buttons"]
+[node name="MoveOn" type="Button" parent="Boot/Buttons"]
 layout_mode = 2
 text = "Move on"
 
-[node name="HoverComponent" type="Node" parent="Control/Buttons/MoveOn"]
+[node name="HoverComponent" type="Node" parent="Boot/Buttons/MoveOn"]
 script = ExtResource("4_keycq")
 metadata/_custom_type_script = "uid://b4rq8el25uwly"
 
-[node name="Quit" type="Button" parent="Control/Buttons"]
+[node name="Again" type="Button" parent="Boot/Buttons"]
+layout_mode = 2
+text = "See that again!"
+
+[node name="HoverComponent" type="Node" parent="Boot/Buttons/Again"]
+script = ExtResource("4_keycq")
+metadata/_custom_type_script = "uid://b4rq8el25uwly"
+
+[node name="Quit" type="Button" parent="Boot/Buttons"]
 layout_mode = 2
 text = "Quit"
 
-[node name="HoverComponent" type="Node" parent="Control/Buttons/Quit"]
+[node name="HoverComponent" type="Node" parent="Boot/Buttons/Quit"]
 script = ExtResource("4_keycq")
 metadata/_custom_type_script = "uid://b4rq8el25uwly"
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ntr6t")
+script = ExtResource("5_62as4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "
+Hold [color=red][tornado radius=7z.0 freq=3.]A[/tornado][/color] or [color=red][tornado radius=7z.0 freq=3.]D[/tornado][/color] 
+To check out the expansion cards
+
+[color=gray][wave]The arrow keys work too!"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

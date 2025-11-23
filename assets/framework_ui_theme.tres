@@ -17,4 +17,6 @@ Button/styles/focus = SubResource("StyleBoxEmpty_0a3de")
 Button/styles/hover = SubResource("StyleBoxEmpty_pe3bo")
 Button/styles/normal = SubResource("StyleBoxEmpty_33anr")
 Button/styles/pressed = SubResource("StyleBoxEmpty_u18lu")
+RichTextLabel/constants/line_separation = 30
+RichTextLabel/constants/paragraph_separation = 30
 VBoxContainer/constants/separation = 75
