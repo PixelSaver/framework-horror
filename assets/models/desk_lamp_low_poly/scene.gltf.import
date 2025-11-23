@@ -36,7 +36,30 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 materials/extract=0
 materials/extract_format=0
-materials/extract_path=""
-_subresources={}
+materials/extract_path="res://assets/models/desk_lamp_low_poly/materials"
+_subresources={
+"materials": {
+"base": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/desk_lamp_low_poly/materials/base.tres",
+"use_external/path": "uid://c4md0uys275qg"
+},
+"lamp": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/desk_lamp_low_poly/materials/lamp.tres",
+"use_external/path": "uid://cgw8m610opy1j"
+},
+"lamp_base": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/desk_lamp_low_poly/materials/lamp_base.tres",
+"use_external/path": "uid://dsso7hsy7huvc"
+},
+"plastik": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/models/desk_lamp_low_poly/materials/plastik.tres",
+"use_external/path": "uid://0r3mr2gsw3tm"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

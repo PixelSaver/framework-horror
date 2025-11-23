@@ -11,7 +11,7 @@ var disabled := true
 func _ready():
 	self.hide()
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if not visible or disabled: return
 	
 	if Input.is_action_pressed("a"):

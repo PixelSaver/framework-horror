@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://c4md0uys275qg"]
+
+[ext_resource type="Texture2D" uid="uid://giddchimiv40" path="res://assets/models/desk_lamp_low_poly/textures/base_baseColor.png" id="1_4dtab"]
+[ext_resource type="Texture2D" uid="uid://dkgtqxn85pfks" path="res://assets/models/desk_lamp_low_poly/textures/base_metallicRoughness.png" id="2_1eelr"]
+[ext_resource type="Texture2D" uid="uid://pbr4mchrvq37" path="res://assets/models/desk_lamp_low_poly/textures/base_normal.png" id="3_5mv5l"]
+
+[resource]
+resource_name = "base"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_4dtab")
+metallic = 1.0
+metallic_texture = ExtResource("2_1eelr")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_1eelr")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_5mv5l")
+ao_enabled = true
+ao_texture = ExtResource("2_1eelr")

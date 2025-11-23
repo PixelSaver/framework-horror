@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://0r3mr2gsw3tm"]
+
+[ext_resource type="Texture2D" uid="uid://djolnof76588k" path="res://assets/models/desk_lamp_low_poly/textures/plastik_baseColor.png" id="1_jhnca"]
+[ext_resource type="Texture2D" uid="uid://dpvpj1ob7k5kq" path="res://assets/models/desk_lamp_low_poly/textures/plastik_metallicRoughness.png" id="2_kbhne"]
+[ext_resource type="Texture2D" uid="uid://bc54gtc5yg6qy" path="res://assets/models/desk_lamp_low_poly/textures/plastik_normal.png" id="3_fjn0j"]
+
+[resource]
+resource_name = "plastik"
+cull_mode = 2
+albedo_texture = ExtResource("1_jhnca")
+metallic = 1.0
+metallic_texture = ExtResource("2_kbhne")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_kbhne")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_fjn0j")
