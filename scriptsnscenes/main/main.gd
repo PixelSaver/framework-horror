@@ -9,10 +9,8 @@ const CAM_FAR := Vector3(0, 4, 3.06)
 func _ready() -> void:
 	Global.hinge_anim.connect(_on_hinge_anim)
 	cam.position = CAM_FAR
-
 func _process(_delta: float) -> void:
 	pass
-
 func _on_hinge_anim(duration:float):
 	print("HINGE")
 	var t : = create_tween()
@@ -20,52 +18,26 @@ func _on_hinge_anim(duration:float):
 	t.tween_property(cam, "position", CAM_MID, duration)
 	t.chain()
 	t.tween_property(cam, "position", CAM_CLOSE, duration)
-
-
-func _intersect_quad_plane(ray_origin: Vector3, ray_direction: Vector3) -> Dictionary:
+func _send_to_subviewport(event: InputEvent, hit_pos: Vector3):
+	print("go")
 	var quad := Global.framework_16.screen_quad as MeshInstance3D
 	var mesh := quad.mesh as PlaneMesh
+	var local = quad.to_local(hit_pos)
 	
-	var quad_normal = quad.global_transform.basis.y
-	var quad_center = quad.global_position
-	
-	var denom = quad_normal.dot(ray_direction)
-	if abs(denom) < 0.0001:
-		return {}
-	
-	var t = (quad_center - ray_origin).dot(quad_normal) / denom
-	if t < 0:
-		return {}
-	
-	var hit_pos = ray_origin + ray_direction * t
-	var local_pos = quad.global_transform.affine_inverse() * hit_pos
-	
-	var plane_x = local_pos.x
-	var plane_z = local_pos.z
-	
-	# Check bounds using mesh size (accounting for scale if needed)
-	var half_width = mesh.size.x / 2.0
-	var half_height = mesh.size.y / 2.0
-	
-	# Check if outside the actual plane bounds
-	if abs(plane_x) > half_width or abs(plane_z) > half_height:
-		return {}
-	
-	# Convert to UV (0-1 range)
+	# Convert 3D hit position to UV coordinates (0-1 range)
 	var uv = Vector2(
-		(plane_x / mesh.size.x) + 0.5,
-		(plane_z / mesh.size.y) + 0.5
+		(local.x / mesh.size.x) + 0.5,
+		(-local.y / mesh.size.y) + 0.5
 	)
 	
-	print("UV: %s" % uv)
+	# Check if UV is within valid range
+	if uv.x < 0 or uv.x > 1 or uv.y < 0 or uv.y > 1:
+		return
 	
-	return {
-		"position": hit_pos,
-		"uv": uv,
-		"plane_coords": Vector2(plane_x, plane_z)
-	}
-
-func _send_to_subviewport(event: InputEvent, vp_pos: Vector2):
+	# Convert UV to viewport pixel coordinates
+	var vp_pos = uv * Vector2(Global.framework_16.framework_viewport.size)
+	
+	# Clone and modify the event
 	var ev = event.duplicate()
 	if ev is InputEventMouse:
 		ev.position = vp_pos
@@ -75,13 +47,16 @@ func _send_to_subviewport(event: InputEvent, vp_pos: Vector2):
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		var from = cam.project_ray_origin(event.position)
-		var direction = cam.project_ray_normal(event.position)
+		var to = from + cam.project_ray_normal(event.position) * 1000.0
 		
-		var result = _intersect_quad_plane(from, direction)
+		var query = PhysicsRayQueryParameters3D.create(from, to)
+		query.collide_with_areas = true
+		query.collide_with_bodies = true
 		
-		if not result.is_empty():
-			print("go")
-			var vp_pos = result.uv * Vector2(Global.framework_16.framework_viewport.size)
-			_send_to_subviewport(event, vp_pos)
-
+		var result = get_world_3d().direct_space_state.intersect_ray(query)
+		if result:
+			print(result.collider)
+		# Check if we hit the correct collider
+		if result and result.collider.is_in_group("screen"):
+			_send_to_subviewport(event, result.position)
 	
