@@ -2,8 +2,8 @@ class_name Framework13
 extends Node3D
 ## Class to hold the framework 3d, and also animate it
 
-const HINGE_START : float = -PI
-const HINGE_END : float =  -PI/3.
+const HINGE_START : float = 0
+const HINGE_END : float =  -2*PI/3.
 @export var hinge : Node3D
 @export var framework_viewport : SubViewport
 @export var framework_ui : FrameworkUI

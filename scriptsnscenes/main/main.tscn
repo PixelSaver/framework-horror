@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://b1aosu42tvpdh"]
+[gd_scene load_steps=20 format=3 uid="uid://b1aosu42tvpdh"]
 
 [ext_resource type="Script" uid="uid://b87jggvw4whfb" path="res://scriptsnscenes/main/main.gd" id="1_j6fwf"]
 [ext_resource type="PackedScene" uid="uid://bo8tvfbkmmes6" path="res://scriptsnscenes/framework/framework_16.tscn" id="2_kxkkf"]
 [ext_resource type="Shader" uid="uid://t8wpynl8ecsf" path="res://shaders/crt.gdshader" id="3_uh2b8"]
 [ext_resource type="Material" uid="uid://k830epaorhv" path="res://assets/textures/Wood066_1K-JPG/Wood066_1K-JPG.tres" id="4_uh2b8"]
+[ext_resource type="PackedScene" uid="uid://y8wwyc5wty76" path="res://scriptsnscenes/framework/framework_13.tscn" id="5_pme2s"]
 [ext_resource type="PackedScene" uid="uid://c6n5v4142jrmg" path="res://assets/models/desk_lamp_low_poly/lamp_low_poly.tscn" id="5_uu8of"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kxkkf"]
@@ -34,7 +35,7 @@ shader_parameter/sharpness = 0.5
 shader_parameter/color_offset = -0.5
 shader_parameter/mask_brightness = 1.0
 shader_parameter/scanline_brightness = 1.0
-shader_parameter/min_scanline_thickness = 0.48900001135250004
+shader_parameter/min_scanline_thickness = 0.4890000113525
 shader_parameter/aspect = 0.75
 shader_parameter/wobble_strength = 2.0
 
@@ -44,84 +45,48 @@ material = ExtResource("4_uh2b8")
 size = Vector2(10, 5)
 center_offset = Vector3(0, -0.01, 0)
 
-[sub_resource type="Animation" id="Animation_uh2b8"]
-resource_name = "slide_in"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("rot_corner/Framework16/Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge:rotation:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-3.142, -0.25, 0, 0.25, 0, -3.142, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("rot_corner:position:x")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-3.589, -0.25, 0, 0.25, 0, 1.016, -0.16666663, -0.82116175, 0.20000005, -0.004812479, 1.016, -0.13332789, -0.017863141, 0.13333333, 0.01786387),
-"times": PackedFloat32Array(0, 0.6666666, 1)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("rot_corner:rotation:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(2, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-0.225, -0.25, 0, 0.25, 0, -0.28136542, -0.012011886, 0.056690916, 0.012011886, -0.056690916, -0.39474726, -0.02148211, 0.022676378, 0.02148211, -0.022676378, -0.38340905, -0.019295216, 0.045352727, 0, 0, 0, -0.105914116, 0.00208918, 0, 0, 0, -0.175, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.6666666, 0.70000005, 0.7756045, 0.9, 1)
-}
-
 [sub_resource type="Animation" id="Animation_uu8of"]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("rot_corner/Framework16/Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge:rotation:x")
+tracks/0/path = NodePath("rot_corner:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-1.047, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1.016, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("rot_corner:position:x")
+tracks/1/path = NodePath("rot_corner:rotation:z")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1.016, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/2/type = "bezier"
+tracks/2/type = "position_3d"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("rot_corner:rotation:z")
+tracks/2/path = NodePath("CRTContainer/SubViewport/Camera3D")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 3.9585881, 3.0669127)
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("rot_corner/Framework13/Model/Hinge:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/3/type = "position_3d"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CRTContainer/SubViewport/Camera3D")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 3.9585881, 3.0669127)
 
 [sub_resource type="Animation" id="Animation_pme2s"]
 resource_name = "cam_pos"
@@ -141,30 +106,62 @@ tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0.033333335, 1, -0.4491085, 0, 0, 0.89347726, 0.53333336, 1, -0.18246715, 0, 0, 0.98321193, 2, 1, -0.25411245, 0, 0, 0.96717465)
 
-[sub_resource type="Animation" id="Animation_5tbie"]
-resource_name = "cam_right"
-tracks/0/type = "position_3d"
+[sub_resource type="Animation" id="Animation_uh2b8"]
+resource_name = "slide_in"
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CRTContainer/SubViewport/Camera3D")
+tracks/0/path = NodePath("rot_corner:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array()
-tracks/1/type = "rotation_3d"
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-3.589, -0.25, 0, 0.25, 0, 1.016, -0.16666663, -0.82116175, 0.20000005, -0.004812479, 1.016, -0.13332789, -0.017863141, 0.13333333, 0.01786387),
+"times": PackedFloat32Array(0, 0.6666666, 1)
+}
+tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CRTContainer/SubViewport/Camera3D")
+tracks/1/path = NodePath("rot_corner:rotation:z")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array()
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-0.225, -0.25, 0, 0.25, 0, -0.28136542, -0.012011886, 0.056690916, 0.012011886, -0.056690916, -0.39474726, -0.02148211, 0.022676378, 0.02148211, -0.022676378, -0.38340905, -0.019295216, 0.045352727, 0, 0, 0, -0.105914116, 0.00208918, 0, 0, 0, -0.175, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.6666666, 0.70000005, 0.7756045, 0.9, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("rot_corner/Framework13/Model/Hinge:rotation:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pme2s"]
 _data = {
 &"RESET": SubResource("Animation_uu8of"),
 &"cam_pos": SubResource("Animation_pme2s"),
-&"cam_right": SubResource("Animation_5tbie"),
 &"slide_in": SubResource("Animation_uh2b8")
 }
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5tbie"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxlo8"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_5tbie")
+metallic = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xx665"]
+resource_local_to_scene = true
+lightmap_size_hint = Vector2i(12, 8)
+material = SubResource("StandardMaterial3D_fxlo8")
+size = Vector2(0.2925, 0.195)
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("cam", "anim_player")]
 script = ExtResource("1_j6fwf")
@@ -184,7 +181,7 @@ shadow_enabled = true
 size = Vector2i(288, 162)
 
 [node name="Camera3D" type="Camera3D" parent="CRTContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.87085354, 0.49154255, 0, -0.49154255, 0.87085354, 0, 3.9585881, 3.0669127)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9585881, 3.0669127)
 current = true
 fov = 30.0
 
@@ -209,6 +206,13 @@ transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 1.016, 0, 0)
 
 [node name="Framework16" parent="rot_corner" instance=ExtResource("2_kxkkf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.016, 0, 0)
+visible = false
+
+[node name="Framework13" parent="rot_corner" instance=ExtResource("5_pme2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0159999, 0, 0)
+
+[node name="ScreenQuad16_10" parent="rot_corner/Framework13/Model/Hinge/ScreenBody" index="0"]
+mesh = SubResource("PlaneMesh_xx665")
 
 [node name="LampLowPoly" parent="." instance=ExtResource("5_uu8of")]
 transform = Transform3D(0.028830886, -0.040850706, -1.7856411e-09, 0, -2.1855695e-09, 0.05, -0.040850706, -0.028830886, -1.2602381e-09, -3.2318294, 0, -1.959583)
@@ -220,3 +224,5 @@ light_energy = 0.5
 spot_range = 6.248
 spot_angle = 50.89
 spot_angle_attenuation = 2.143545
+
+[editable path="rot_corner/Framework13"]

@@ -13,7 +13,7 @@ func _ready() -> void:
 	anim_player.play("slide_in")
 	anim_player.animation_finished.connect(func(_name:StringName):
 		if _name == "slide_in":
-			Global.framework_16.anim_hinge(1)
+			Global.framework_13.anim_hinge(1)
 		)
 func _process(_delta: float) -> void:
 	pass
@@ -21,7 +21,7 @@ func _on_hinge_anim(_duration:float):
 	anim_player.play("cam_pos")
 
 func _send_to_subviewport(event: InputEvent, hit_pos: Vector3):
-	var quad := Global.framework_16.screen_quad as MeshInstance3D
+	var quad := Global.framework_13.screen_quad as MeshInstance3D
 	var mesh := quad.mesh as PlaneMesh
 	var local = quad.to_local(hit_pos)
 	
@@ -34,12 +34,12 @@ func _send_to_subviewport(event: InputEvent, hit_pos: Vector3):
 	if uv.x < 0-MARGIN or uv.x > 1+MARGIN or uv.y < 0-MARGIN or uv.y > 1+MARGIN:
 		return
 	
-	var vp_pos = uv * Vector2(Global.framework_16.framework_viewport.size)
+	var vp_pos = uv * Vector2(Global.framework_13.framework_viewport.size)
 	
 	var ev = event.duplicate()
 	if ev is InputEventMouse:
 		ev.position = vp_pos
-	Global.framework_16.framework_viewport.push_input(ev, true)
+	Global.framework_13.framework_viewport.push_input(ev, true)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
@@ -55,5 +55,5 @@ func _input(event: InputEvent) -> void:
 		if result and result.collider.is_in_group("screen"):
 			_send_to_subviewport(event, result.position)
 	else:
-		Global.framework_16.framework_viewport.push_input(event)
+		Global.framework_13.framework_viewport.push_input(event)
 	
