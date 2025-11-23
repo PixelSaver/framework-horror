@@ -20,6 +20,6 @@ func anim_hinge(dir:float) -> void:
 	else: 
 		hinge.rotation.x = HINGE_END
 		local_hinge_end = HINGE_START
-	hinge_t = create_tween().set_ease(Tween.EASE_OUT)
+	hinge_t = create_tween()
 	hinge_t.set_trans(Tween.TRANS_QUINT)
 	hinge_t.tween_property(hinge, "rotation:x", local_hinge_end, 1.)

@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://crdp6khqwel6y"]
+
+[ext_resource type="Theme" uid="uid://cs7kutpnn8qjg" path="res://assets/framework_ui_theme.tres" id="1_ntr6t"]
+
+[node name="FrameworkUI" type="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="Framework" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ntr6t")
+
+[node name="Title" type="RichTextLabel" parent="Framework"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size=250]Framework 16
+"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

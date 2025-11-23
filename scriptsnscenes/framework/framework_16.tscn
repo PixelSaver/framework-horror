@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://bo8tvfbkmmes6"]
+[gd_scene load_steps=14 format=4 uid="uid://bo8tvfbkmmes6"]
 
 [ext_resource type="Material" uid="uid://b5s44xkvup25b" path="res://assets/models/framework_16_laptop/materials/Weapon_plastic.tres" id="1_7jfrk"]
 [ext_resource type="Script" uid="uid://hgmw5svote6k" path="res://scriptsnscenes/framework/framework_16.gd" id="1_uc85b"]
 [ext_resource type="Material" uid="uid://dhjtkrgwvobes" path="res://assets/models/framework_16_laptop/materials/KEYBOARD.tres" id="2_uc85b"]
+[ext_resource type="PackedScene" uid="uid://crdp6khqwel6y" path="res://scriptsnscenes/framework/framework_ui/framework_ui.tscn" id="4_1i0nd"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_w0acr"]
 _surfaces = [{
@@ -102,6 +103,18 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_aqsp5")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_5ubbt"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4382l"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_5ubbt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uc85b"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_4382l")
+size = Vector2(2, 1.25)
+
 [node name="Framework16" type="Node3D" node_paths=PackedStringArray("hinge")]
 script = ExtResource("1_uc85b")
 hinge = NodePath("Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge")
@@ -126,7 +139,7 @@ mesh = SubResource("ArrayMesh_2waqh")
 skeleton = NodePath("")
 
 [node name="Hinge" type="Node3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi"]
-transform = Transform3D(2.0977e-09, -0.16359508, -7.284191e-09, -0.07825405, -7.400205e-09, 0.14366509, -0.14366509, 1.6421714e-09, -0.07825405, 0.00038273376, 0.7293509, 0.10672661)
+transform = Transform3D(2.1452903e-08, -0.16359508, -6.2515743e-16, -0.10488543, -1.375406e-08, 0.12554839, -0.12554839, -1.6463682e-08, -0.10488543, 0.00038273376, 0.7293509, 0.10672661)
 
 [node name="Screen" type="Node3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge"]
 transform = Transform3D(-2.6719255e-07, 6.1126533, 0, -6.1126533, -2.6719255e-07, 0, 0, 0, 6.1126533, -4.4582696, 0.002339714, -0.6523833)
@@ -134,3 +147,11 @@ transform = Transform3D(-2.6719255e-07, 6.1126533, 0, -6.1126533, -2.6719255e-07
 [node name="Screen_Weapon plastic_0" type="MeshInstance3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge/Screen"]
 mesh = SubResource("ArrayMesh_yyq5d")
 skeleton = NodePath("")
+
+[node name="ScreenQuad16_10" type="MeshInstance3D" parent="Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi/Hinge/Screen"]
+transform = Transform3D(1, -1.0894682e-14, -1.7484552e-07, 1.7484554e-07, -4.3711395e-08, 1, -7.6106215e-15, -1, -4.3711395e-08, 1.7763568e-15, 0, 0.09164411)
+mesh = SubResource("PlaneMesh_uc85b")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="FrameworkUI" parent="SubViewport" instance=ExtResource("4_1i0nd")]

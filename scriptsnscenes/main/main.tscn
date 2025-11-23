@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1aosu42tvpdh"]
+[gd_scene load_steps=11 format=3 uid="uid://b1aosu42tvpdh"]
 
 [ext_resource type="Script" uid="uid://b87jggvw4whfb" path="res://scriptsnscenes/main/main.gd" id="1_j6fwf"]
-[ext_resource type="PackedScene" uid="uid://bo8tvfbkmmes6" path="res://assets/models/framework_16_laptop/framework_16.tscn" id="2_kxkkf"]
+[ext_resource type="PackedScene" uid="uid://bo8tvfbkmmes6" path="res://scriptsnscenes/framework/framework_16.tscn" id="2_kxkkf"]
 [ext_resource type="Shader" uid="uid://t8wpynl8ecsf" path="res://shaders/crt.gdshader" id="3_uh2b8"]
-[ext_resource type="Script" uid="uid://hgmw5svote6k" path="res://scriptsnscenes/framework/framework_16.gd" id="3_uu8of"]
+[ext_resource type="Material" uid="uid://k830epaorhv" path="res://assets/textures/Wood066_1K-JPG/Wood066_1K-JPG.tres" id="4_uh2b8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kxkkf"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -36,6 +36,12 @@ shader_parameter/min_scanline_thickness = 0.5
 shader_parameter/aspect = 0.75
 shader_parameter/wobble_strength = 0.0
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_uu8of"]
+lightmap_size_hint = Vector2i(52, 12)
+material = ExtResource("4_uh2b8")
+size = Vector2(10, 5)
+center_offset = Vector3(0, -0.01, 0)
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_j6fwf")
 
@@ -47,10 +53,6 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="Framework16" parent="." instance=ExtResource("2_kxkkf")]
-script = ExtResource("3_uu8of")
-
-[node name="Hinge" parent="Framework16/Sketchfab_model/518e45eea9ca4970b255be999b4df31c_fbx/RootNode/Chassi" index="2"]
-transform = Transform3D(2.0977e-09, -0.16359508, -7.284191e-09, -0.081938535, -7.3553217e-09, 0.14159602, -0.14159602, 1.8327565e-09, -0.081938535, 0.00038273376, 0.7293509, 0.10672661)
 
 [node name="CRTContainer" type="Node" parent="."]
 
@@ -59,6 +61,7 @@ size = Vector2i(1728, 972)
 
 [node name="Camera3D" type="Camera3D" parent="CRTContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -4.7683716e-07, 4.287052, 3.3116207)
+current = true
 fov = 30.0
 
 [node name="CRTRect" type="ColorRect" parent="CRTContainer"]
@@ -69,4 +72,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[editable path="Framework16"]
+[node name="Table" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_uu8of")
