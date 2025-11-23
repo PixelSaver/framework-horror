@@ -42,9 +42,10 @@ material = ExtResource("4_uh2b8")
 size = Vector2(10, 5)
 center_offset = Vector3(0, -0.01, 0)
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("cam")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("cam", "subviewport")]
 script = ExtResource("1_j6fwf")
 cam = NodePath("CRTContainer/SubViewport/Camera3D")
+subviewport = NodePath("CRTContainer/SubViewport")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uu8of")
