@@ -85,6 +85,7 @@ text = "Move on"
 
 [node name="HoverComponent" type="Node" parent="Boot/Buttons/MoveOn"]
 script = ExtResource("4_keycq")
+col_hover = Color(0.5263203, 0.90709203, 0.56001264, 1)
 metadata/_custom_type_script = "uid://b4rq8el25uwly"
 
 [node name="Again" type="Button" parent="Boot/Buttons"]
@@ -93,6 +94,7 @@ text = "See that again!"
 
 [node name="HoverComponent" type="Node" parent="Boot/Buttons/Again"]
 script = ExtResource("4_keycq")
+col_hover = Color(0.550276, 0.853781, 0.9666031, 1)
 metadata/_custom_type_script = "uid://b4rq8el25uwly"
 
 [node name="Quit" type="Button" parent="Boot/Buttons"]
@@ -101,9 +103,10 @@ text = "Quit"
 
 [node name="HoverComponent" type="Node" parent="Boot/Buttons/Quit"]
 script = ExtResource("4_keycq")
+col_hover = Color(0.9916901, 0.47697842, 0.5134484, 1)
 metadata/_custom_type_script = "uid://b4rq8el25uwly"
 
-[node name="Menu" type="Control" parent="."]
+[node name="Menu" type="Control" parent="." node_paths=PackedStringArray("explode_but")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,6 +115,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ntr6t")
 script = ExtResource("5_62as4")
+explode_but = NodePath("Button")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Menu"]
 layout_mode = 1
@@ -125,8 +129,28 @@ text = "
 Hold [color=red][tornado radius=7z.0 freq=3.]A[/tornado][/color] or [color=red][tornado radius=7z.0 freq=3.]D[/tornado][/color] 
 Hover over the expansion cards
 
-[color=gray][wave]The arrow keys work too!"
+[color=gray][wave]The arrow keys work too!
+"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.75
+anchor_right = 0.9
+anchor_bottom = 0.85
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Explode this laptop!"
+
+[node name="HoverComponent" type="Node" parent="Menu/Button"]
+script = ExtResource("4_keycq")
+col_hover = Color(0.75894135, 0.61016786, 1, 1)
+metadata/_custom_type_script = "uid://b4rq8el25uwly"

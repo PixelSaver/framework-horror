@@ -5,6 +5,7 @@ const CAM_RIGHT_POS: Vector3 = Vector3(2.953, 0.709, 1.58253)
 const CAM_RIGHT_ROT: Vector3 = Vector3(-8, 65.2, 0)
 const CAM_RETURN_POS: Vector3 = Vector3(0, 2.10325, 1.98516)
 const CAM_RETURN_ROT: Vector3 = Vector3(-29.4, 0, 0)
+@export var explode_but : Button
 
 var tweening : int = -2
 var t : Tween
@@ -12,6 +13,9 @@ var disabled := true
 
 func _ready():
 	self.hide()
+	explode_but.connect("pressed", func():
+		Global.explode_laptop.emit(1., 1)
+	)
 
 func _input(_event: InputEvent) -> void:
 	if not visible or disabled: return
