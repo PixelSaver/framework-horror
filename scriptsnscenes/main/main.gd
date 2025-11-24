@@ -19,14 +19,13 @@ func _ready() -> void:
 	anim_player.play("cam_pos", -1, 0.)
 	anim_player.advance(0)
 	anim_player.play("slide_in")
-	anim_player.animation_finished.connect(
-		func(_name:StringName):
-			if _name == "slide_in":
-				Global.framework_13.anim_hinge(1)
-	)
+	anim_player.animation_finished.connect(_on_slide_fin)
 	Global.explode_laptop.connect(_on_explode_laptop)
-func _process(_delta: float) -> void:
-	pass
+
+func _on_slide_fin(name:StringName):
+	if name == "slide_in":
+		Global.framework_13.anim_hinge(1)
+
 func _on_hinge_anim(_duration:float):
 	anim_player.play("cam_pos")
 
@@ -61,6 +60,9 @@ func _input(event: InputEvent) -> void:
 	
 	if not Input.is_action_just_pressed("back"): return
 	match Global.state:
+		Global.States.BOOT:
+			anim_restart()
+			Global.state = Global.States.BEGIN
 		Global.States.EXPLODE:
 			Global.explode_laptop.emit(1., -1)
 			Global.state = Global.States.CARDS
@@ -105,3 +107,12 @@ func _on_explode_laptop(duration:float, direction:int=1):
 	t.set_trans(Tween.TRANS_QUINT).set_parallel(true)
 	t.tween_property(cam, "global_position", target_pos, duration)
 	t.tween_property(cam, "rotation_degrees", target_rot, duration)
+
+func anim_restart():
+	anim_player.animation_finished.disconnect(_on_slide_fin)
+	anim_player.play("cam_pos", -1, 0.)
+	anim_player.advance(0)
+	anim_player.play("slide_in", -1, -2., true)
+	await anim_player.animation_finished
+	anim_player.play("slide_in")
+	anim_player.animation_finished.connect(_on_slide_fin)

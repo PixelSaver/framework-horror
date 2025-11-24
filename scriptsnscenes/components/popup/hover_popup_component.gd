@@ -39,7 +39,7 @@ func _update_line():
 	
 	line2d.clear_points()
 	var _size = get_viewport().get_visible_rect().size
-	line2d.add_point(_size/2.)
+	line2d.add_point(_size/2. + Vector2(0, 20))
 	var bottom_left = panel.position + panel.get_rect().size * Vector2(0, 1)
 	var bottom_right = panel.position + panel.get_rect().size
 	if left:
