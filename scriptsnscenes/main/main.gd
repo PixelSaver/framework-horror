@@ -75,7 +75,7 @@ func _raycast(event:InputEvent):
 	if result.collider.is_in_group("screen"):
 		_send_to_subviewport(event, result.position)
 	
-	#if Global.state != Global.States.CARDS and Global.state != Global.States.EXPLODE: return
+	if Global.state != Global.States.CARDS and Global.state != Global.States.EXPLODE: return
 	
 	if result.collider.is_in_group("expansion_card"):
 		Global.update_outlines.emit()
@@ -83,11 +83,11 @@ func _raycast(event:InputEvent):
 			if child is MeshInstance3D:
 				Global.current_outline = child.get_node("OutlineComponent")
 	elif result.collider.is_in_group("explode_parts"):
-		print("found explode")
-		Global.update_outlines.emit()
-		for child in result.collider.get_children():
-			if child is OutlineComponent:
-				Global.current_outline = child
+		if Global.state == Global.States.EXPLODE: 
+			Global.update_outlines.emit()
+			for child in result.collider.get_children():
+				if child is OutlineComponent:
+					Global.current_outline = child
 	else: Global.current_outline = null
 	Global.update_outlines.emit()
 

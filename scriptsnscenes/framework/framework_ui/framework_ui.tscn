@@ -148,7 +148,7 @@ offset_top = -40.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Explode this laptop!"
+text = "Or... Explode this laptop!"
 
 [node name="HoverComponent" type="Node" parent="Menu/Button"]
 script = ExtResource("4_keycq")

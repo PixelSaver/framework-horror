@@ -19,7 +19,7 @@ func _ready():
 	)
 
 func _input(_event: InputEvent) -> void:
-	if Global.state != Global.States.MENU: return
+	if Global.state != Global.States.CARDS: return
 	
 	if Input.is_action_pressed("a"):
 		tween_cam(-1)
@@ -31,6 +31,7 @@ func _input(_event: InputEvent) -> void:
 ## Tweening, 1 means right, 0 means back, and -1 means left
 func tween_cam(modifier:int):
 	if tweening == modifier: return # -1, 0, and 1 are only valid modifiers
+	
 	match modifier:
 		-1:
 			Global.framework_13.anim_left()
