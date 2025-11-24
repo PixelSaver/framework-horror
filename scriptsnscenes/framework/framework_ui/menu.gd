@@ -6,12 +6,13 @@ const CAM_RIGHT_ROT: Vector3 = Vector3(-8, 65.2, 0)
 const CAM_RETURN_POS: Vector3 = Vector3(0, 2.10325, 1.98516)
 const CAM_RETURN_ROT: Vector3 = Vector3(-29.4, 0, 0)
 @export var explode_but : Button
+var framework_ui : FrameworkUI
 
 var tweening : int = -2
 var t : Tween
-var disabled := true
 
 func _ready():
+	framework_ui = get_parent()
 	self.hide()
 	explode_but.connect("pressed", func():
 		Global.explode_laptop.emit(1., 1) 
@@ -27,6 +28,12 @@ func _input(_event: InputEvent) -> void:
 		tween_cam(1)
 	else:
 		tween_cam(0)
+	
+	if Input.is_action_just_pressed("back"):
+		await anim_out()
+		framework_ui.anim_1()
+		Global.state = Global.States.BOOT
+		
 
 ## Tweening, 1 means right, 0 means back, and -1 means left
 func tween_cam(modifier:int):
@@ -54,4 +61,6 @@ func tween_cam(modifier:int):
 
 func anim_in():
 	self.show()
-	disabled = false
+
+func anim_out():
+	self.hide()

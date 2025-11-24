@@ -12,7 +12,9 @@ var pitch := 0.0
 func _ready() -> void:
 	Global.explode_laptop.connect(
 		func(_duration: float, _dir: int):
+			if _dir != 1: return
 			await get_tree().create_timer(1.).timeout
+			if Global.state != Global.States.EXPLODE: return
 			var pos = Global.main.cam.position
 			var normal = cam.project_ray_normal(get_viewport().get_visible_rect().size/Global.viewport_mini_scale/2.)
 			distance = pos.distance_to(target)
@@ -23,7 +25,6 @@ func _ready() -> void:
 			yaw = atan2(offset.x, offset.z)
 			pitch = asin(offset.y / distance)
 
-			# Now update the camera position to match these values
 			_update_camera_position()
 	)
 

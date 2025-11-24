@@ -57,6 +57,13 @@ func _input(event: InputEvent) -> void:
 	else:
 		Global.framework_13.framework_viewport.\
 				push_input(event)
+	
+	
+	if not Input.is_action_just_pressed("back"): return
+	match Global.state:
+		Global.States.EXPLODE:
+			Global.explode_laptop.emit(1., -1)
+			Global.state = Global.States.CARDS
 
 func _raycast(event:InputEvent):
 	var scaled_pos = event.position / Global.viewport_mini_scale

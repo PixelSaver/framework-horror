@@ -15,7 +15,6 @@ signal explode_laptop(duration:float, direction:int)
 enum States {
 	BEGIN,
 	BOOT,
-	MENU,
 	CARDS,
 	EXPLODE,
 }

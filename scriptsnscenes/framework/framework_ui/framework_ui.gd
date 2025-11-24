@@ -14,7 +14,7 @@ const BOOT_HEIGHT_OFFSET : float = -1000
 @export var menu : Menu
 
 func _ready() -> void:
-	Global.boot_laptop.connect(anim_start)
+	Global.boot_laptop.connect(anim_1)
 	logo.pivot_offset = logo.size/2.
 	title.hide()
 	logo.show()
@@ -24,9 +24,15 @@ func _ready() -> void:
 	but_move_on.pressed.connect(_on_move_on)
 	but_quit.pressed.connect(_on_quit)
 
-func anim_start():
+func anim_1():
+	boot.modulate.a = 1
+	title.hide()
+	logo.show()
+	buttons.hide()
+	boot.show()
 	var t : = create_tween()
 	t.set_trans(Tween.TRANS_CUBIC).set_parallel(true)
+	logo.position.y = 0
 	logo.rotation = 0
 	t.tween_property(logo, "rotation", 2*PI, .6)
 	t.chain()
@@ -48,11 +54,11 @@ func anim_3():
 	t.set_trans(Tween.TRANS_BACK)
 	t.set_parallel(true)
 	var og = buttons.position.y
-	buttons.position.y += 400
+	buttons.position.y = og + 400
 	buttons.show()
 	t.tween_property(buttons, "position:y", og, 0.5)
 	await t.finished
-	Global.state = Global.States.MENU
+	Global.state = Global.States.BOOT
 
 func anim_out():
 	var t : = create_tween()
