@@ -1,5 +1,11 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://caff6tbhal5i6"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://caff6tbhal5i6"]
+
+[ext_resource type="Texture2D" uid="uid://bsg6tsl7ofpds" path="res://assets/textures/keyboard_1.png" id="1_7x1cp"]
 
 [resource]
-albedo_color = Color(0.28694552, 0.28694552, 0.28694552, 1)
-roughness = 0.36
+albedo_texture = ExtResource("1_7x1cp")
+metallic = 0.64
+roughness = 0.44
+uv1_scale = Vector3(2.88225, 1, 3.9515)
+uv1_offset = Vector3(0.4993, 0, 0.014)
+uv1_triplanar = true
