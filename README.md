@@ -32,6 +32,7 @@ CRT Framework laptop thing? Render? Don't even know
 * Open and close laptop
 * A and D to see expansion cards
 * Hover over expansion cards to outline them and see a tooltip
+* Press Q to go back (This took wayy too long)
 
 ### What do I take out of this?
 Don't delete big files, always make backups, and learn blender. Also, don't animate in godot, it's terrible and you should just learn blender animation...
@@ -72,7 +73,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 ### Play 
 
-If you'd like to build it yourself, I used Godot 4.5. I do have a pre-built web version available [eventually on github pages](https://pixelsaver.github.io/framework-horror), but if you still insist on building this unoptimized mess, go ahead.
+If you'd like to build it yourself, I used Godot 4.5. I do have a pre-built web version available [on my itch](https://pixelsaver.itch.io/framework), but if you still insist on building this unoptimized mess, go ahead.
 
 1. Install Godot 4.5
 2. Download and unzip the code
@@ -82,6 +83,8 @@ If you'd like to build it yourself, I used Godot 4.5. I do have a pre-built web 
 
 #### Tutorial
 If you're stuck, I have left a list of hints below to help you out :)
+
+PRESS Q!!!!!
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -93,6 +96,7 @@ If you're stuck, I have left a list of hints below to help you out :)
 - [X] Animate opening
 - [X] Animate expansion cards
 - [X] Add tooltop when hovering over expansion cards
+- [X] Press Q to go back
 - [ ] Add horror (CANCELED BECAUSE no time and no ideas)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
