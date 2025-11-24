@@ -5,6 +5,10 @@ const MARGIN := 0.3
 @export var cam : Camera3D
 @export var anim_player : AnimationPlayer
 @export var cam_viewport : SubViewport
+const CAM_RETURN_POS: Vector3 = Vector3(0, 2.10325, 1.98516)
+const CAM_RETURN_ROT: Vector3 = Vector3(-29.4, 0, 0)
+const CAM_EXPLODE_POS: Vector3 = Vector3(0, 2.28046, 4.0453)
+const CAM_EXPLODE_ROT: Vector3 = Vector3(-24.9, 0, 0)
 
 func _ready() -> void:
 	Global.hinge_anim.connect(_on_hinge_anim)
@@ -19,6 +23,7 @@ func _ready() -> void:
 		if _name == "slide_in":
 			Global.framework_13.anim_hinge(1)
 		)
+	Global.explode_laptop.connect(_on_explode_laptop)
 func _process(_delta: float) -> void:
 	pass
 func _on_hinge_anim(_duration:float):
@@ -69,3 +74,10 @@ func _input(event: InputEvent) -> void:
 	else:
 		Global.framework_13.framework_viewport.push_input(event)
 	
+func _on_explode_laptop(duration:float, direction:int=1):
+	var t = create_tween().set_ease(Tween.EASE_OUT)
+	var target_pos = CAM_RETURN_POS if direction == -1 else CAM_EXPLODE_POS
+	var target_rot = CAM_RETURN_ROT if direction == -1 else CAM_EXPLODE_ROT
+	t.set_trans(Tween.TRANS_QUINT).set_parallel(true)
+	t.tween_property(cam, "global_position", target_pos, duration)
+	t.tween_property(cam, "rotation_degrees", target_rot, duration)

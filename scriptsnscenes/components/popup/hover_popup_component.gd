@@ -2,10 +2,10 @@ extends Node
 class_name HoverPopupComponent
 
 @onready var control: Control = $Control
-@onready var panel: Panel = $Control/Panel
-@onready var line2d: Line2D = $Control/Line2D
-@onready var title_label: RichTextLabel = $Control/Panel/VBoxContainer/Title
-@onready var desc_label: RichTextLabel = $Control/Panel/VBoxContainer/Desc
+@onready var panel: Panel = control.get_node(^"Panel")
+@onready var line2d: Line2D = control.get_node(^"Line2D")
+@onready var title_label: RichTextLabel = control.get_node(^"Panel/VBoxContainer/Title")
+@onready var desc_label: RichTextLabel = control.get_node(^"Panel/VBoxContainer/Desc")
 
 @export var title:String
 @export var desc:String

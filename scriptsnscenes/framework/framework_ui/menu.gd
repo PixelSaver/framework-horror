@@ -14,11 +14,12 @@ var disabled := true
 func _ready():
 	self.hide()
 	explode_but.connect("pressed", func():
-		Global.explode_laptop.emit(1., 1)
+		Global.explode_laptop.emit(1., 1) 
+		Global.state = Global.States.EXPLODE
 	)
 
 func _input(_event: InputEvent) -> void:
-	if not visible or disabled: return
+	if Global.state != Global.States.MENU: return
 	
 	if Input.is_action_pressed("a"):
 		tween_cam(-1)

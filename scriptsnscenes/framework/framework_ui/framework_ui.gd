@@ -65,6 +65,7 @@ func _on_again() -> void:
 
 func _on_move_on() -> void:
 	await anim_out()
+	Global.state = Global.States.MENU
 	menu.anim_in()
 
 func _on_quit() -> void:

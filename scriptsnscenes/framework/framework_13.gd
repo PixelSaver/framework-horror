@@ -70,3 +70,5 @@ func _on_explode_parts(duration:float, direction:int=1):
 	exp_t.set_trans(Tween.TRANS_QUINT).set_parallel(true)
 	exp_t.tween_property(mobo, "global_position:y", lerpf(mobo_og_y, .5, mult), duration)
 	exp_t.tween_property(keeb, "global_position:y", lerpf(keeb_og_y, .7, mult), duration)
+	anim_left()
+	anim_right()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://b1aosu42tvpdh"]
+[gd_scene load_steps=17 format=3 uid="uid://b1aosu42tvpdh"]
 
 [ext_resource type="Script" uid="uid://b87jggvw4whfb" path="res://scriptsnscenes/main/main.gd" id="1_j6fwf"]
+[ext_resource type="Script" uid="uid://cdjxi4tbymysw" path="res://scriptsnscenes/main/cam_controller.gd" id="2_pme2s"]
 [ext_resource type="Shader" uid="uid://t8wpynl8ecsf" path="res://shaders/crt.gdshader" id="3_uh2b8"]
 [ext_resource type="Material" uid="uid://k830epaorhv" path="res://assets/textures/Wood066_1K-JPG/Wood066_1K-JPG.tres" id="4_uh2b8"]
 [ext_resource type="PackedScene" uid="uid://y8wwyc5wty76" path="res://scriptsnscenes/framework/framework_13.tscn" id="5_pme2s"]
@@ -161,13 +162,15 @@ environment = SubResource("Environment_uu8of")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CRTContainer" type="Node" parent="."]
+[node name="CRTContainer" type="Node" parent="." node_paths=PackedStringArray("cam")]
+script = ExtResource("2_pme2s")
+cam = NodePath("SubViewport/Camera3D")
 
 [node name="SubViewport" type="SubViewport" parent="CRTContainer"]
 size = Vector2i(288, 162)
 
 [node name="Camera3D" type="Camera3D" parent="CRTContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.8708534, 0.4915425, 0, -0.4915425, 0.8708534, 0, 3.9585881, 3.0669127)
+transform = Transform3D(1, 0, 0, 0, 0.9067194, 0.42173448, 0, -0.42173448, 0.9067194, 0, 3.9585881, 3.0669127)
 current = true
 fov = 30.0
 

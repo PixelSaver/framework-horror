@@ -11,3 +11,12 @@ var current_outline : OutlineComponent
 signal update_outlines
 
 signal explode_laptop(duration:float, direction:int)
+
+enum States {
+	BEGIN,
+	BOOT,
+	MENU,
+	CARDS,
+	EXPLODE,
+}
+var state : States = States.BEGIN
