@@ -51,6 +51,8 @@ func anim_3():
 	buttons.position.y += 400
 	buttons.show()
 	t.tween_property(buttons, "position:y", og, 0.5)
+	await t.finished
+	Global.state = Global.States.MENU
 
 func anim_out():
 	var t : = create_tween()
@@ -65,7 +67,7 @@ func _on_again() -> void:
 
 func _on_move_on() -> void:
 	await anim_out()
-	Global.state = Global.States.MENU
+	Global.state = Global.States.CARDS
 	menu.anim_in()
 
 func _on_quit() -> void:

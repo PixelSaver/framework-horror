@@ -2,29 +2,22 @@ extends Node
 class_name OutlineComponent
 
 @export var outline_shader_mat : ShaderMaterial
-@export var mesh : MeshInstance3D
+@export var meshes : Array[MeshInstance3D]
 
 func _ready() -> void:
-	mesh = get_parent()
+	if meshes.size() == 0: meshes = [get_parent()]
 	Global.update_outlines.connect(_on_update)
 
 func is_outlined() -> bool:
-	return mesh.material_overlay != null
+	return meshes[0].material_overlay != null
 
 func _on_update():
 	if Global.current_outline == self:
 		outline_parent(true)
 	else: outline_parent(false)
 
-func outline_parent(do:bool, _mesh:MeshInstance3D=null):
-	if _mesh:
-		if do:
-			print(_mesh)
-			_mesh.material_overlay = outline_shader_mat
-			print(_mesh.material_overlay)
-		else:
-			_mesh.material_overlay = null
-	else:
+func outline_parent(do:bool):
+	for mesh in meshes:
 		if do:
 			mesh.material_overlay = outline_shader_mat
 		else:

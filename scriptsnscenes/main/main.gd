@@ -19,10 +19,11 @@ func _ready() -> void:
 	anim_player.play("cam_pos", -1, 0.)
 	anim_player.advance(0)
 	anim_player.play("slide_in")
-	anim_player.animation_finished.connect(func(_name:StringName):
-		if _name == "slide_in":
-			Global.framework_13.anim_hinge(1)
-		)
+	anim_player.animation_finished.connect(
+		func(_name:StringName):
+			if _name == "slide_in":
+				Global.framework_13.anim_hinge(1)
+	)
 	Global.explode_laptop.connect(_on_explode_laptop)
 func _process(_delta: float) -> void:
 	pass
@@ -52,28 +53,44 @@ func _send_to_subviewport(event: InputEvent, hit_pos: Vector3):
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
-		var scaled_pos = event.position / Global.viewport_mini_scale
-		var from = cam.project_ray_origin(scaled_pos)
-		var to = from + cam.project_ray_normal(scaled_pos) * 1000.0
-		
-		var query = PhysicsRayQueryParameters3D.create(from, to)
-		#query.collide_with_areas = true
-		query.collide_with_bodies = true
-		
-		var result = get_world_3d().direct_space_state.intersect_ray(query)
-		
-		if result and result.collider.is_in_group("screen"):
-			_send_to_subviewport(event, result.position)
-		if result and result.collider.is_in_group("expansion_card"):
-			Global.update_outlines.emit()
-			for child in result.collider.get_children():
-				if child is MeshInstance3D:
-					Global.current_outline = child.get_node("OutlineComponent")
-		else: Global.current_outline = null
-		Global.update_outlines.emit()
+		_raycast(event)
 	else:
-		Global.framework_13.framework_viewport.push_input(event)
+		Global.framework_13.framework_viewport.\
+				push_input(event)
+
+func _raycast(event:InputEvent):
+	var scaled_pos = event.position / Global.viewport_mini_scale
+	var from = cam.project_ray_origin(scaled_pos)
+	var to = from + cam.project_ray_normal(scaled_pos) * 1000.0
 	
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	query.collide_with_bodies = true
+	
+	var result = get_world_3d().direct_space_state.intersect_ray(query)
+	
+	if not result: 
+		Global.update_outlines.emit()
+		return
+	
+	if result.collider.is_in_group("screen"):
+		_send_to_subviewport(event, result.position)
+	
+	#if Global.state != Global.States.CARDS and Global.state != Global.States.EXPLODE: return
+	
+	if result.collider.is_in_group("expansion_card"):
+		Global.update_outlines.emit()
+		for child in result.collider.get_children():
+			if child is MeshInstance3D:
+				Global.current_outline = child.get_node("OutlineComponent")
+	elif result.collider.is_in_group("explode_parts"):
+		print("found explode")
+		Global.update_outlines.emit()
+		for child in result.collider.get_children():
+			if child is OutlineComponent:
+				Global.current_outline = child
+	else: Global.current_outline = null
+	Global.update_outlines.emit()
+
 func _on_explode_laptop(duration:float, direction:int=1):
 	var t = create_tween().set_ease(Tween.EASE_OUT)
 	var target_pos = CAM_RETURN_POS if direction == -1 else CAM_EXPLODE_POS
