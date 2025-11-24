@@ -25,6 +25,7 @@ func _ready() -> void:
 	but_quit.pressed.connect(_on_quit)
 
 func anim_1():
+	menu.hide()
 	boot.modulate.a = 1
 	title.hide()
 	logo.show()

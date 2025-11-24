@@ -110,8 +110,10 @@ func _on_explode_laptop(duration:float, direction:int=1):
 
 func anim_restart():
 	anim_player.animation_finished.disconnect(_on_slide_fin)
-	anim_player.play("cam_pos", -1, 0.)
-	anim_player.advance(0)
+	Global.framework_13.anim_hinge(-1)
+	anim_player.play("cam_pos", -1, -2., true)
+	Global.framework_13.framework_ui.boot.hide()
+	await anim_player.animation_finished
 	anim_player.play("slide_in", -1, -2., true)
 	await anim_player.animation_finished
 	anim_player.play("slide_in")

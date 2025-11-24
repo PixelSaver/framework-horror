@@ -41,21 +41,24 @@ func anim_left(backwards:bool=false):
 ## Animate the hinge, using -1 or 1 for direction
 func anim_hinge(dir:float) -> void:
 	var dur = 1.
-	Global.hinge_anim.emit(dur)
-	var local_hinge_end : float
+	var target_rot : float
 	if dir != -1 and dir != 1: return
 	elif dir == 1: 
+		Global.hinge_anim.emit(dur)
 		hinge.rotation.x = HINGE_START
-		local_hinge_end = HINGE_END
+		target_rot = HINGE_END
 	else: 
 		hinge.rotation.x = HINGE_END
-		local_hinge_end = HINGE_START
+		target_rot = HINGE_START
 	hinge_t = create_tween()
 	hinge_t.set_trans(Tween.TRANS_QUINT)
-	hinge_t.tween_property(hinge, "rotation:x", local_hinge_end, dur)
-	hinge_t.tween_callback(func():
-		Global.boot_laptop.emit()
-	)
+	hinge_t.tween_property(hinge, "rotation:x", target_rot, dur)
+	if dir == 1: 
+		hinge_t.tween_callback(func():
+			Global.boot_laptop.emit()
+		)
+	await hinge_t.finished
+	return
 
 func _on_explode_parts(duration:float, direction:int=1):
 	if !(direction == 1 || direction == -1): return
